@@ -1,6 +1,20 @@
-node_modules
-dist
+# Node modules
+node_modules/
+
+# React build
+build/
+dist/
+
+# Fichiers système / cache
 .DS_Store
+
+# Fichiers internes Replit
+.local/
+
+# Variables d'environnement
+.env
+
+# Autres
 server/public
 vite.config.ts.*
 *.tar.gz
