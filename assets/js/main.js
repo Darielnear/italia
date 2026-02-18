@@ -5,28 +5,49 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filters on Index
     const filterBtns = document.querySelectorAll('.filter-btn');
     const products = document.querySelectorAll('.product-card');
+    const grid = document.getElementById('product-grid');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // UI
+            // UI Update (Tabs style)
             filterBtns.forEach(b => {
-                b.classList.remove('bg-anthracite', 'text-white');
-                b.classList.add('bg-gray-100', 'text-gray-600');
-            });
-            btn.classList.remove('bg-gray-100', 'text-gray-600');
-            btn.classList.add('bg-anthracite', 'text-white');
-
-            // Logic
-            const filter = btn.dataset.filter;
-            products.forEach(p => {
-                if (filter === 'all' || p.dataset.category === filter) {
-                    p.style.display = 'block';
-                    p.classList.add('fade-in');
-                } else {
-                    p.style.display = 'none';
-                    p.classList.remove('fade-in');
+                b.classList.remove('active', 'text-anthracite', 'font-bold');
+                b.classList.add('text-gray-400', 'font-medium');
+                const span = b.querySelector('span');
+                if (span) {
+                    span.style.width = '0';
+                    span.style.opacity = '0';
                 }
             });
+            
+            btn.classList.add('active', 'text-anthracite', 'font-bold');
+            btn.classList.remove('text-gray-400', 'font-medium');
+            const activeSpan = btn.querySelector('span');
+            if (activeSpan) {
+                activeSpan.style.width = '100%';
+                activeSpan.style.opacity = '1';
+            }
+
+            // Logic with Fade Animation
+            const filter = btn.dataset.filter;
+            
+            // Start fade out
+            if (grid) grid.style.opacity = '0';
+            
+            setTimeout(() => {
+                products.forEach(p => {
+                    if (filter === 'all' || p.dataset.category === filter) {
+                        p.style.display = 'block';
+                    } else {
+                        p.style.display = 'none';
+                    }
+                });
+                // Fade back in
+                if (grid) {
+                    grid.style.transition = 'opacity 0.4s ease-in-out';
+                    grid.style.opacity = '1';
+                }
+            }, 300);
         });
     });
 });
