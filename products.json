@@ -1,60 +1,1456 @@
 [
   {
     "id": 1,
-    "prezzo": 450000,
-    "nome_modello": "Volante E-Racer X1",
-    "brand": "Cicli Volante",
+    "prezzo": 6290,
+    "nome_modello": "Specialized Levo Gen 3 Alloy",
+    "brand": "Specialized",
     "categoria": "E-MTB",
-    "descrizione_lunga": "La E-MTB definitiva per dominare ogni sentiero. Potenza pura e design italiano.",
+    "descrizione_lunga": "La Specialized Levo Gen 3 Alloy è una e-MTB enduro full-power con telaio in alluminio M5 Premium Alloy e geometria regolabile per adattarsi a ogni pilota. Il motore Specialized 2.2 da 90 Nm garantisce una spinta potente sui trail più impegnativi, mentre la batteria da 700 Wh assicura un'autonomia eccezionale. Le sospensioni Fox 36/Float X da 160/150 mm offrono controllo e comfort su qualsiasi terreno.",
     "caratteristiche_tecniche": {
-      "Motore": "Bosch Performance CX",
-      "Batteria": "750Wh",
-      "Telaio": "Carbonio Monoscocca"
+      "telaio": "Alluminio M5 Premium Alloy",
+      "motore": "Specialized 2.2, 90 Nm",
+      "batteria": "700 Wh",
+      "trasmissione": "SRAM GX 12v",
+      "sospensioni": "Fox 36 / Float X 160/150 mm",
+      "freni": "SRAM Code R",
+      "ruote": "29\"",
+      "peso": "24.2 kg",
+      "autonomia": "80-100 km"
     },
-    "varianti": ["rosso", "nero", "titanio"],
-    "immagine_principale": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&q=80&w=1000"
+    "varianti": [
+      "grigio",
+      "rosso"
+    ]
   },
   {
     "id": 2,
-    "prezzo": 320000,
-    "nome_modello": "Volante Strada Pro",
-    "brand": "Cicli Volante",
-    "categoria": "Road",
-    "descrizione_lunga": "Leggerezza e aerodinamica senza compromessi. Per chi cerca la velocità pura.",
+    "prezzo": 8920,
+    "nome_modello": "Specialized Turbo Kenevo SL",
+    "brand": "Specialized",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Specialized Turbo Kenevo SL è una e-MTB leggera con sistema SL che amplifica la coppia del motore da 35 Nm fino a 4 volte il tuo sforzo. Il telaio in carbonio FACT 11m garantisce rigidità e leggerezza per un'esperienza di guida naturale. La batteria da 320 Wh è espandibile con una batteria aggiuntiva da 160 Wh per affrontare le sessioni enduro più lunghe con la massima agilità.",
     "caratteristiche_tecniche": {
-      "Gruppo": "Shimano Dura-Ace",
-      "Peso": "6.8kg",
-      "Ruote": "Carbon 50mm"
+      "telaio": "Carbonio FACT 11m",
+      "motore": "SL 1.2, 35 Nm",
+      "batteria": "320 + 160 Wh",
+      "trasmissione": "SRAM GX 12v",
+      "sospensioni": "Fox 36 170 mm",
+      "freni": "SRAM Code RS",
+      "ruote": "29\"",
+      "peso": "18.5 kg",
+      "autonomia": "60-80 km"
     },
-    "varianti": ["bianco", "blu"],
-    "immagine_principale": "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=1000"
+    "varianti": [
+      "grigio",
+      "verde"
+    ]
   },
   {
     "id": 3,
-    "prezzo": 280000,
-    "nome_modello": "Volante Trail Master",
-    "brand": "Cicli Volante",
+    "prezzo": 920,
+    "nome_modello": "Specialized Rockhopper",
+    "brand": "Specialized",
     "categoria": "MTB",
-    "descrizione_lunga": "Agilità e controllo per i singletrack più tecnici.",
+    "descrizione_lunga": "La Specialized Rockhopper è una mountain bike XC entry-level con telaio in alluminio A1 e geometria moderna studiata per i trail leggeri. Reattiva e leggera, è la scelta ideale per chi si avvicina al mondo dell'off-road o cerca una bici versatile per sentieri sterrati. La forcella ammortizzata da 100 mm e i freni idraulici garantiscono controllo e sicurezza in ogni situazione.",
     "caratteristiche_tecniche": {
-      "Sospensioni": "Fox 36 Factory",
-      "Freni": "Magura MT7"
+      "telaio": "Alluminio A1",
+      "forcella": "Suntour XCM 100 mm",
+      "trasmissione": "microSHIFT 1x9",
+      "freni": "Tektro idraulici",
+      "ruote": "29\"",
+      "peso": "13.5 kg",
+      "autonomia": "N/A"
     },
-    "varianti": ["verde", "nero"],
-    "immagine_principale": "https://images.unsplash.com/photo-1511994298220-41270c1f22ed?auto=format&fit=crop&q=80&w=1000"
+    "varianti": [
+      "blu",
+      "nero",
+      "rosso"
+    ]
   },
   {
     "id": 4,
-    "prezzo": 15000,
-    "nome_modello": "Casco Aero V1",
-    "brand": "Cicli Volante",
-    "categoria": "Accessori",
-    "descrizione_lunga": "Sicurezza e stile. Aerodinamica testata in galleria del vento.",
+    "prezzo": 7350,
+    "nome_modello": "Orbea Wild FS",
+    "brand": "Orbea",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "L'Orbea Wild FS è una e-MTB enduro full-power con telaio in carbonio e geometria regolabile tramite flip chip. Il motore Shimano EP801 da 85 Nm offre una risposta potente e modulabile, mentre la batteria da 630 Wh garantisce lunghe sessioni sui trail. Le sospensioni Fox da 170 mm e i freni Shimano XT assicurano prestazioni di alto livello su terreni tecnici e impegnativi.",
     "caratteristiche_tecniche": {
-      "Peso": "220g",
-      "Ventilazione": "18 fori"
+      "telaio": "Carbonio CC",
+      "motore": "Shimano EP801, 85 Nm",
+      "batteria": "630 Wh",
+      "trasmissione": "Shimano XT 12v",
+      "sospensioni": "Fox 170 mm",
+      "freni": "Shimano XT",
+      "ruote": "29\"",
+      "peso": "23.5 kg",
+      "autonomia": "70 km"
     },
-    "varianti": ["nero", "giallo"],
-    "immagine_principale": "https://images.unsplash.com/photo-1559087316-6b2633cc7641?auto=format&fit=crop&q=80&w=1000"
+    "varianti": [
+      "arancio"
+    ]
+  },
+  {
+    "id": 5,
+    "prezzo": 5770,
+    "nome_modello": "Orbea Rise M20",
+    "brand": "Orbea",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "L'Orbea Rise M20 è una e-MTB leggera con motore Shimano EP621-RS da 60 Nm e telaio in carbonio OMR. Progettata per chi cerca una sensazione di guida naturale con il supporto elettrico, la batteria da 360 Wh è espandibile fino a 630 Wh. Le sospensioni Fox da 140 mm e i freni Shimano MT520 garantiscono precisione e controllo su trail tecnici.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio OMR",
+      "motore": "EP621-RS, 60 Nm",
+      "batteria": "360 / 630 Wh",
+      "trasmissione": "Shimano Deore",
+      "sospensioni": "Fox 140 mm",
+      "freni": "Shimano MT520",
+      "ruote": "29\"",
+      "peso": "17.8 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 6,
+    "prezzo": 6080,
+    "nome_modello": "Fantic XTF 1.5 630Wh",
+    "brand": "Fantic",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Fantic XTF 1.5 630Wh è una e-MTB enduro italiana dal carattere aggressivo, equipaggiata con il motore Brose S-Mag da 90 Nm per affrontare i terreni più tecnici. Il design robusto combina telaio in alluminio e carbonio con una batteria da 630 Wh per sessioni prolungate. Le sospensioni RockShox da 165 mm e i freni Magura MT5 completano un pacchetto ad alte prestazioni.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy / Carbonio",
+      "motore": "Brose S-Mag, 90 Nm",
+      "batteria": "630 Wh",
+      "trasmissione": "SRAM NX",
+      "sospensioni": "RockShox 165 mm",
+      "freni": "Magura MT5",
+      "ruote": "29\"",
+      "peso": "24 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "verde"
+    ]
+  },
+  {
+    "id": 7,
+    "prezzo": 6810,
+    "nome_modello": "Fantic XTF 1.5 Sport",
+    "brand": "Fantic",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Fantic XTF 1.5 Sport è la versione top di gamma dell'XTF 1.5, equipaggiata con componenti di alto livello Fox e Shimano XT per prestazioni enduro superiori. Il motore Brose S-Mag da 90 Nm su telaio in alluminio idroformato offre una guida potente e precisa. Le ruote in carbonio da 29\" e i freni Magura MT7 completano una configurazione da competizione.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy idroformato",
+      "motore": "Brose S-Mag, 90 Nm",
+      "batteria": "630 Wh",
+      "trasmissione": "Shimano XT",
+      "sospensioni": "Fox Performance",
+      "freni": "Magura MT7",
+      "ruote": "29\" carbonio",
+      "peso": "23 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 8,
+    "prezzo": 7660,
+    "nome_modello": "Trek Rail 9.8 XT Gen 4",
+    "brand": "Trek",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Trek Rail 9.8 XT Gen 4 è una e-MTB enduro con telaio in carbonio OCLV e motore Bosch CX Gen 4 da 85 Nm per prestazioni eccezionali sui trail più impegnativi. Il sistema Mino Link permette di regolare la geometria del telaio per adattarsi a diversi stili di guida. Le sospensioni RockShox da 160 mm e la trasmissione Shimano XT 12v garantiscono affidabilità e controllo.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio OCLV",
+      "motore": "Bosch CX Gen4, 85 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Shimano XT 12v",
+      "sospensioni": "RockShox 160 mm",
+      "freni": "Shimano XT",
+      "ruote": "29\"",
+      "peso": "23 kg",
+      "autonomia": "75 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 9,
+    "prezzo": 6820,
+    "nome_modello": "Canyon Spectral:ONfly CF 9",
+    "brand": "Canyon",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Canyon Spectral:ONfly CF 9 è una e-MTB direct-to-consumer con telaio in carbonio CF e motore Shimano EP8 da 85 Nm. La batteria da 720 Wh assicura un'autonomia generosa per le sessioni più lunghe in montagna. Le sospensioni Fox 36 da 150 mm e i freni Shimano XT garantiscono precisione e controllo su qualsiasi tipo di terreno tecnico.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio CF",
+      "motore": "Shimano EP8, 85 Nm",
+      "batteria": "720 Wh",
+      "trasmissione": "Shimano XT",
+      "sospensioni": "Fox 36 150 mm",
+      "freni": "Shimano XT",
+      "ruote": "29\"",
+      "peso": "24 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 10,
+    "prezzo": 10500,
+    "nome_modello": "Santa Cruz Heckler 9",
+    "brand": "Santa Cruz",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Santa Cruz Heckler 9 è una e-MTB premium con telaio in carbonio e sistema di sospensioni VPP di quinta generazione per un'efficienza pedalata straordinaria. Il motore Shimano EP801 da 85 Nm e la batteria da 720 Wh offrono potenza e autonomia per le sessioni enduro più lunghe. La trasmissione SRAM GX AXS wireless e le ruote Reserve 30 completano una bici da trail d'élite.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio C",
+      "motore": "Shimano EP801, 85 Nm",
+      "batteria": "720 Wh",
+      "trasmissione": "SRAM GX AXS",
+      "sospensioni": "RockShox 160 mm",
+      "freni": "SRAM Code",
+      "ruote": "Reserve 30",
+      "peso": "23.5 kg",
+      "autonomia": "85 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 11,
+    "prezzo": 6290,
+    "nome_modello": "Cannondale Moterra Neo 4",
+    "brand": "Cannondale",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Cannondale Moterra Neo 4 è una e-MTB polivalente con telaio in alluminio SmartForm e motore Bosch CX Gen 4 da 85 Nm. La batteria da 750 Wh offre una delle autonomie più elevate della categoria, ideale per lunghe giornate in montagna. Le sospensioni RockShox 35 da 160 mm e i freni Shimano MT420 garantiscono una guida sicura su ogni tipo di sentiero.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy SmartForm",
+      "motore": "Bosch CX Gen4, 85 Nm",
+      "batteria": "750 Wh",
+      "trasmissione": "Shimano Deore",
+      "sospensioni": "RockShox 35 160 mm",
+      "freni": "Shimano MT420",
+      "ruote": "29\"",
+      "peso": "25 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "verde"
+    ]
+  },
+  {
+    "id": 12,
+    "prezzo": 8920,
+    "nome_modello": "Giant Reign E+1 Mx Pro",
+    "brand": "Giant",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Giant Reign E+1 Mx Pro è una e-MTB enduro con telaio in carbonio Advanced e sistema di sospensioni Maestro per massima efficienza e trazione. Il motore Yamaha SyncDrive Pro2 da 85 Nm e la batteria da 800 Wh garantiscono potenza e autonomia ai vertici della categoria. La configurazione mullet 29/27.5\" con sospensioni Fox 38 da 170 mm offre agilità e stabilità.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio Advanced",
+      "motore": "Yamaha SyncDrive Pro2, 85 Nm",
+      "batteria": "800 Wh",
+      "trasmissione": "SRAM GX",
+      "sospensioni": "Fox 38 170 mm",
+      "freni": "SRAM Code",
+      "ruote": "29/27.5\" mullet",
+      "peso": "24 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 13,
+    "prezzo": 9760,
+    "nome_modello": "Scott Ransom eRIDE 910",
+    "brand": "Scott",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Scott Ransom eRIDE 910 è una e-MTB enduro leggera dotata del motore TQ HPR50 da 50 Nm, che offre una sensazione di guida naturale e fluida. Il telaio in carbonio HMX garantisce rigidità e leggerezza per un'esperienza di guida quasi identica a quella di una bici tradizionale. Le sospensioni Fox NUDE da 170 mm e la trasmissione SRAM GX completano questa bici d'élite.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio HMX",
+      "motore": "TQ HPR50, 50 Nm",
+      "batteria": "630 Wh",
+      "trasmissione": "SRAM GX",
+      "sospensioni": "Fox NUDE 170 mm",
+      "freni": "SRAM Code",
+      "ruote": "29\" Syncros",
+      "peso": "22 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 14,
+    "prezzo": 7130,
+    "nome_modello": "Haibike Xduro AllMtn 3.0",
+    "brand": "Haibike",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Haibike Xduro AllMtn 3.0 è una e-MTB all-mountain robusta con motore Yamaha PW-X3 da 85 Nm e batteria da 720 Wh per affrontare qualsiasi tipo di terreno. Il telaio in alluminio resistente e le sospensioni RockShox ZEB da 170 mm assicurano stabilità e controllo nelle discese più impegnative. I freni Magura MT5 offrono una frenata potente e affidabile in ogni condizione.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "Yamaha PW-X3, 85 Nm",
+      "batteria": "720 Wh",
+      "trasmissione": "Shimano XT",
+      "sospensioni": "RockShox ZEB 170 mm",
+      "freni": "Magura MT5",
+      "ruote": "29\"",
+      "peso": "25 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 15,
+    "prezzo": 6290,
+    "nome_modello": "Mondraker Chaser 29",
+    "brand": "Mondraker",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La Mondraker Chaser 29 è una e-MTB enduro leggera con la celebre geometria Forward Geometry e motore Mahle X35+ da 40 Nm. La batteria da 350 Wh è espandibile con un extender per aumentare l'autonomia. Le sospensioni Fox 38 da 170 mm e le ruote DT Swiss garantiscono prestazioni elevate su terreni tecnici e trail impegnativi.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy Forward Geometry",
+      "motore": "Mahle X35+, 40 Nm",
+      "batteria": "350 Wh + extender",
+      "trasmissione": "Shimano Deore",
+      "sospensioni": "Fox 38 170 mm",
+      "freni": "Shimano MT520",
+      "ruote": "29\" DT Swiss",
+      "peso": "20 kg",
+      "autonomia": "70 km"
+    },
+    "varianti": [
+      "grigio"
+    ]
+  },
+  {
+    "id": 16,
+    "prezzo": 3150,
+    "nome_modello": "Cannondale Adventure Neo 4",
+    "brand": "Cannondale",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Cannondale Adventure Neo 4 è una e-bike urbana confortevole con motore Bosch Active Line Plus da 50 Nm, ideale per i tragitti quotidiani in città. Il telaio in alluminio leggero e la trasmissione Shimano Nexus a 8 velocità garantiscono una guida fluida e senza pensieri. La batteria da 500 Wh offre un'autonomia di circa 100 km per affrontare le giornate più intense.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "Bosch Active Line Plus, 50 Nm",
+      "batteria": "500 Wh",
+      "trasmissione": "Shimano Nexus 8v",
+      "freni": "Tektro idraulici",
+      "ruote": "28\"",
+      "peso": "22 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 17,
+    "prezzo": 4720,
+    "nome_modello": "Specialized Turbo Vado 5",
+    "brand": "Specialized",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Specialized Turbo Vado 5 è una e-bike da commuting polivalente con motore SL 1.2 da 35 Nm e batteria da 530 Wh per lunghi spostamenti urbani. Il sistema Future Shock assorbe le vibrazioni del manto stradale, garantendo un comfort superiore. Il peso contenuto di 17 kg e la trasmissione SRAM Apex 1 la rendono agile e piacevole da guidare in ogni contesto cittadino.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy E5",
+      "motore": "SL 1.2, 35 Nm",
+      "batteria": "530 Wh",
+      "trasmissione": "SRAM Apex 1",
+      "freni": "SRAM idraulici",
+      "ruote": "650b",
+      "peso": "17 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": [
+      "blu",
+      "rosso"
+    ]
+  },
+  {
+    "id": 18,
+    "prezzo": 4200,
+    "nome_modello": "Specialized Turbo Como 3.0",
+    "brand": "Specialized",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Specialized Turbo Como 3.0 è una e-bike urbana comfort con posizione di guida rialzata e motore Specialized 2.0 da 50 Nm per una pedalata assistita piacevole e rilassante. Il telaio in alluminio con geometria step-through facilita la salita e la discesa dalla sella. La batteria da 530 Wh garantisce un'autonomia sufficiente per i tragitti più lunghi in città.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "Specialized 2.0, 50 Nm",
+      "batteria": "530 Wh",
+      "trasmissione": "Microshift 9v",
+      "freni": "Tektro idraulici",
+      "ruote": "650b",
+      "peso": "21 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 19,
+    "prezzo": 4510,
+    "nome_modello": "Gazelle Ultimate C5",
+    "brand": "Gazelle",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Gazelle Ultimate C5 è una e-bike olandese di alta qualità con motore Bosch Performance Line da 65 Nm e trasmissione CVT Enviolo per un cambio continuo e senza interruzioni. Il telaio in alluminio Superlite è leggero e resistente, ideale per l'uso quotidiano in città. La batteria da 500 Wh offre un'autonomia di circa 100 km per affrontare i tragitti più lunghi.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio Superlite",
+      "motore": "Bosch Performance Line, 65 Nm",
+      "batteria": "500 Wh",
+      "trasmissione": "Enviolo Trekking CVT",
+      "freni": "Shimano BR-MT200",
+      "ruote": "28\"",
+      "peso": "22.5 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 20,
+    "prezzo": 5770,
+    "nome_modello": "Gazelle Heavyduty NI C5",
+    "brand": "Gazelle",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Gazelle Heavyduty NI C5 è una e-bike robusta progettata per un uso intensivo con capacità di carico fino a 230 kg. Il motore Bosch Cargo Line da 85 Nm e la trasmissione CVT Enviolo Cargo assicurano una guida fluida anche a pieno carico. La batteria da 625 Wh garantisce un'autonomia di circa 90 km, ideale per i corrieri e i pendolari che trasportano carichi pesanti.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy rinforzato",
+      "motore": "Bosch Cargo Line, 85 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Enviolo Cargo CVT",
+      "freni": "Shimano MT420",
+      "ruote": "28\"",
+      "peso": "29 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": [
+      "rosso"
+    ]
+  },
+  {
+    "id": 21,
+    "prezzo": 1990,
+    "nome_modello": "G-Force T42 Electric",
+    "brand": "G-Force",
+    "categoria": "E-City",
+    "descrizione_lunga": "La G-Force T42 Electric è una e-bike pieghevole compatta ideale per la città, con motore posteriore da 250W e batteria amovibile da 468 Wh. Il telaio pieghevole in alluminio permette di ridurre gli ingombri facilmente per il trasporto sui mezzi pubblici o il rimessaggio. La trasmissione a 7 velocità e i freni a disco meccanici garantiscono una guida sicura e versatile.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy pieghevole",
+      "motore": "250W posteriore, 35 Nm",
+      "batteria": "468 Wh",
+      "trasmissione": "7 velocità",
+      "freni": "Dischi meccanici",
+      "ruote": "20\"",
+      "peso": "22 kg",
+      "autonomia": "60 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 22,
+    "prezzo": 2310,
+    "nome_modello": "G-Force S21",
+    "brand": "G-Force",
+    "categoria": "E-City",
+    "descrizione_lunga": "La G-Force S21 è una e-bike urbana agile con telaio step-through e motore centrale Bafang M400 da 65 Nm per una guida fluida e potente in città. Il design moderno e la geometria accessibile la rendono adatta a ciclisti di ogni altezza. La batteria da 504 Wh e la trasmissione Shimano a 9 velocità garantiscono autonomia e versatilità per i tragitti quotidiani.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy step-through",
+      "motore": "Bafang M400, 65 Nm",
+      "batteria": "504 Wh",
+      "trasmissione": "Shimano 9v",
+      "freni": "Shimano idraulici",
+      "ruote": "27.5\"",
+      "peso": "21 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": []
+  },
+  {
+    "id": 23,
+    "prezzo": 3150,
+    "nome_modello": "Evelo Omega Electric",
+    "brand": "Evelo",
+    "categoria": "E-City",
+    "descrizione_lunga": "L'Evelo Omega Electric è una e-bike da commuting potente con motore posteriore da 750W e coppia elevata per affrontare salite ripide senza fatica. La trasmissione CVT Enviolo garantisce un cambio continuo e intuitivo, mentre la batteria da 720 Wh assicura un'autonomia di circa 80 km. I freni idraulici Tektro da 180 mm offrono una frenata potente e precisa in ogni condizione.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "750W posteriore, 80 Nm",
+      "batteria": "720 Wh",
+      "trasmissione": "Enviolo CVT",
+      "freni": "Tektro idraulici 180 mm",
+      "ruote": "26\"",
+      "peso": "27 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": []
+  },
+  {
+    "id": 24,
+    "prezzo": 3990,
+    "nome_modello": "Evelo Aurora Limited",
+    "brand": "Evelo",
+    "categoria": "E-City",
+    "descrizione_lunga": "L'Evelo Aurora Limited è una e-bike premium con sospensione completa anteriore e posteriore per il massimo comfort sui lunghi percorsi. Il motore posteriore da 750W e la batteria da 840 Wh garantiscono potenza e autonomia eccezionali. La trasmissione CVT Enviolo e i freni idraulici Tektro completano una bici ideale per chi cerca comfort e performance in ogni condizione.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy full-suspension",
+      "motore": "750W posteriore",
+      "batteria": "840 Wh",
+      "trasmissione": "Enviolo CVT",
+      "sospensioni": "Anteriore / Posteriore",
+      "freni": "Tektro idraulici",
+      "ruote": "26\"",
+      "peso": "29 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 25,
+    "prezzo": 4200,
+    "nome_modello": "Brompton Electric",
+    "brand": "Brompton",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Brompton Electric è l'iconica bici pieghevole elettrica britannica con motore anteriore discreto da 250W e batteria da 300 Wh inserita in una borsa removibile. Grazie al suo sistema di piegatura esclusivo, si riduce a dimensioni ultra-compatte in soli 10 secondi, perfetta per chi utilizza i mezzi pubblici. La trasmissione 2x6 velocità garantisce adattabilità a qualsiasi tipo di percorso urbano.",
+    "caratteristiche_tecniche": {
+      "telaio": "Acciaio pieghevole",
+      "motore": "250W anteriore, 30 Nm",
+      "batteria": "300 Wh",
+      "trasmissione": "2x6 velocità",
+      "freni": "Dischi semplici",
+      "ruote": "16\"",
+      "peso": "12.5 kg",
+      "autonomia": "40-70 km"
+    },
+    "varianti": [
+      "arancio"
+    ]
+  },
+  {
+    "id": 26,
+    "prezzo": 8400,
+    "nome_modello": "Riese & Müller Nevo 4",
+    "brand": "Riese & Müller",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Riese & Müller Nevo 4 è una e-bike premium di alto livello con motore Bosch Performance CX Gen4 da 85 Nm e possibilità di doppia batteria fino a 1500 Wh per un'autonomia senza paragoni. Il telaio in alluminio sport e la trasmissione CVT Enviolo 380° garantiscono comfort e semplicità d'uso in ogni contesto urbano. I freni idraulici Magura e le ruote da 28\" completano una bici ideale per pendolari esigenti.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio sport",
+      "motore": "Bosch CX Gen4, 85 Nm",
+      "batteria": "750 Wh + 750 Wh",
+      "trasmissione": "Enviolo 380° CVT",
+      "freni": "Idraulici Magura",
+      "ruote": "28\"",
+      "peso": "28 kg",
+      "autonomia": "120+ km"
+    },
+    "varianti": [
+      "rosso"
+    ]
+  },
+  {
+    "id": 27,
+    "prezzo": 4200,
+    "nome_modello": "Kalkhoff Image 5 Advance",
+    "brand": "Kalkhoff",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Kalkhoff Image 5 Advance è un e-trekking tedesco con motore Bosch Performance Line da 65 Nm e telaio in alluminio leggero dalla geometria eretta e confortevole. Progettata per i lunghi spostamenti, offre una posizione di guida naturale che riduce la fatica. La batteria da 625 Wh e la trasmissione Shimano Nexus a 8 velocità la rendono affidabile e versatile per l'uso quotidiano.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio Entdecker",
+      "motore": "Bosch Performance Line, 65 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Shimano Nexus 8v",
+      "freni": "Shimano BR-MT200",
+      "ruote": "28\"",
+      "peso": "25 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "verde"
+    ]
+  },
+  {
+    "id": 28,
+    "prezzo": 6080,
+    "nome_modello": "Moustache Lundi 27.3",
+    "brand": "Moustache",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Moustache Lundi 27.3 è una e-bike francese dal design originale e riconoscibile, equipaggiata con il motore Bosch Performance CX da 85 Nm e una batteria integrata da 750 Wh. Il telaio compatto in alluminio 6061 e le sospensioni garantiscono comfort anche sui percorsi misti. La trasmissione Shimano XT a 11 velocità e i freni Magura MT5 completano una bici di alto profilo.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio 6061",
+      "motore": "Bosch CX, 85 Nm",
+      "batteria": "750 Wh",
+      "trasmissione": "Shimano XT 11v",
+      "freni": "Magura MT5",
+      "ruote": "27.5\"",
+      "peso": "26 kg",
+      "autonomia": "110 km"
+    },
+    "varianti": [
+      "arancio"
+    ]
+  },
+  {
+    "id": 29,
+    "prezzo": 1890,
+    "nome_modello": "Tenways CGO600 Pro",
+    "brand": "Tenways",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Tenways CGO600 Pro è una e-bike minimalista direct-to-consumer dal design scandinavo essenziale, con motore anteriore leggero da 250W e trasmissione a cinghia Gates per la massima silenziosità. Il telaio in alluminio 6061 e il peso contenuto di soli 16.8 kg la rendono facilmente manovrabile in città. La batteria da 432 Wh offre un'autonomia di circa 100 km per i tragitti quotidiani.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio 6061",
+      "motore": "250W anteriore, 35 Nm",
+      "batteria": "432 Wh",
+      "trasmissione": "8v Gates Belt Drive",
+      "freni": "Shimano BR-MT200",
+      "ruote": "27.5\"",
+      "peso": "16.8 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 30,
+    "prezzo": 2990,
+    "nome_modello": "Cowboy Cross",
+    "brand": "Cowboy",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Cowboy Cross è una e-bike connessa app-first con motore posteriore da 250W e batteria amovibile integrata nel telaio. Il sistema antifurto GPS integrato e la connettività Bluetooth offrono un livello di sicurezza e gestione digitale senza precedenti. Il design pulito, il peso di soli 16.9 kg e i freni a disco idraulici la rendono perfetta per il pendolare urbano moderno.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "250W posteriore, 45 Nm",
+      "batteria": "360 Wh",
+      "trasmissione": "Single speed",
+      "freni": "Dischi idraulici",
+      "ruote": "27.5\"",
+      "peso": "16.9 kg",
+      "autonomia": "70 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 31,
+    "prezzo": 3990,
+    "nome_modello": "VanMoof S5",
+    "brand": "VanMoof",
+    "categoria": "E-City",
+    "descrizione_lunga": "La VanMoof S5 è una e-bike futuristica con doppio motore da 250W integrato nel mozzo anteriore e posteriore per una coppia combinata di 92 Nm. La trasmissione CVT Enviolo automatica adatta il rapporto di marcia in modo continuo senza alcun intervento del ciclista. L'autonomia eccezionale di 150 km e il sistema antifurto integrato ne fanno una delle e-bike urbane più avanzate sul mercato.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "Dual 250W, 92 Nm combinati",
+      "batteria": "622 Wh",
+      "trasmissione": "Enviolo CVT automatica",
+      "freni": "Idraulici",
+      "ruote": "27.5\"",
+      "peso": "20.5 kg",
+      "autonomia": "150 km"
+    },
+    "varianti": [
+      "grigio"
+    ]
+  },
+  {
+    "id": 32,
+    "prezzo": 1990,
+    "nome_modello": "Rad Power RadCity 5",
+    "brand": "Rad Power",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Rad Power RadCity 5 è una e-bike americana dal rapporto qualità-prezzo imbattibile, equipaggiata con un motore posteriore da 750W e un portapacchi massivo per trasportare tutto il necessario. Il telaio low-step in alluminio facilita la salita e la discesa dalla sella, rendendola accessibile a tutti. La batteria da 672 Wh garantisce un'autonomia di circa 80 km per i tragitti quotidiani.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy low-step",
+      "motore": "750W posteriore, 60 Nm",
+      "batteria": "672 Wh",
+      "trasmissione": "5 velocità",
+      "freni": "Dischi idraulici",
+      "ruote": "26\"",
+      "peso": "28 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 33,
+    "prezzo": 6290,
+    "nome_modello": "Tern GSD S10",
+    "brand": "Tern",
+    "categoria": "Cargo",
+    "descrizione_lunga": "La Tern GSD S10 è una cargo-bike compatta con motore Bosch Cargo Line da 85 Nm e una capacità di carico totale di 180 kg, ideale per trasportare bambini, spesa o merci in città. Le ruote da 20\" la rendono agile e manovrabile nonostante le dimensioni generose. La batteria da 750 Wh e la trasmissione CVT Enviolo 380° garantiscono autonomia e semplicità d'uso in ogni contesto urbano.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy",
+      "motore": "Bosch Cargo Line, 85 Nm",
+      "batteria": "750 Wh",
+      "trasmissione": "Enviolo 380°",
+      "freni": "Shimano MT420",
+      "ruote": "20\"",
+      "peso": "32 kg",
+      "autonomia": "80 km",
+      "carico": "180 kg"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 34,
+    "prezzo": 1890,
+    "nome_modello": "Veloretti Electric Ace",
+    "brand": "Veloretti",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Veloretti Electric Ace è una e-bike lifestyle con telaio in acciaio cromoly e motore Bafang posteriore da 250W per un'assistenza discreta e piacevole. Il design retrò chic e la batteria integrata nel telaio la rendono esteticamente elegante e funzionale. Perfetta per il pendolare urbano che non vuole rinunciare allo stile, pesa solo 18 kg per una guida agile e leggera.",
+    "caratteristiche_tecniche": {
+      "telaio": "Acciaio cromoly",
+      "motore": "250W posteriore, 30 Nm",
+      "batteria": "418 Wh",
+      "trasmissione": "Single speed",
+      "freni": "Dischi meccanici",
+      "ruote": "27.5\"",
+      "peso": "18 kg",
+      "autonomia": "70 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 35,
+    "prezzo": 1490,
+    "nome_modello": "Honbike U4",
+    "brand": "Honbike",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Honbike U4 è una e-bike ultra-leggera in carbonio che pesa soli 12 kg, con batteria amovibile posizionata nel petto del telaio e trasportabile persino in aereo. Il motore anteriore da 250W e la batteria da 252 Wh offrono un'assistenza agile per i tragitti urbani brevi. Il design minimalista e la facilità di trasporto la rendono unica nel suo genere per chi viaggia frequentemente.",
+    "caratteristiche_tecniche": {
+      "telaio": "Carbonio",
+      "motore": "250W anteriore, 35 Nm",
+      "batteria": "252 Wh",
+      "trasmissione": "Single speed",
+      "freni": "Dischi meccanici",
+      "ruote": "20\"",
+      "peso": "12 kg",
+      "autonomia": "50 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 36,
+    "prezzo": 4720,
+    "nome_modello": "Trek Allant+ 8 Stagger",
+    "brand": "Trek",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Trek Allant+ 8 Stagger è una e-bike da commuting con motore Bosch Performance Line CX da 85 Nm e telaio Alpha Aluminium dalla geometria step-through per un accesso facilitato. La sospensione anteriore SR Suntour da 63 mm assorbe le irregolarità del manto stradale, garantendo un comfort superiore. La batteria da 625 Wh e il portapacchi integrato la rendono perfetta per i pendolari esigenti.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alpha Aluminium step-through",
+      "motore": "Bosch CX, 85 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Shimano Deore 10v",
+      "sospensioni": "SR Suntour NEX 63 mm",
+      "freni": "Shimano MT420",
+      "ruote": "28\"",
+      "peso": "25 kg",
+      "autonomia": "120 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 37,
+    "prezzo": 3350,
+    "nome_modello": "Cube Kathmandu Hybrid",
+    "brand": "Cube",
+    "categoria": "Trekking",
+    "descrizione_lunga": "La Cube Kathmandu Hybrid è un e-trekking completo con motore Bosch Performance CX Gen4 da 85 Nm e telaio in alluminio Superlite. L'equipaggiamento touring di serie include luci, portapacchi e parafanghi per affrontare qualsiasi tipo di percorso in totale autonomia. La batteria da 625 Wh e la trasmissione Shimano Nexus a 8 velocità garantiscono comfort e semplicità d'uso per i lunghi viaggi.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio Superlite",
+      "motore": "Bosch CX Gen4, 85 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Shimano Nexus 8v",
+      "freni": "Shimano BR-MT200",
+      "ruote": "28\"",
+      "peso": "26 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "verde"
+    ]
+  },
+  {
+    "id": 38,
+    "prezzo": 2990,
+    "nome_modello": "Scott Sub Active eRide 20",
+    "brand": "Scott",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Scott Sub Active eRide 20 è una e-bike urbana sportiva con motore Bosch Active Plus da 50 Nm e telaio in alluminio 6061 dalla geometria dinamica. La trasmissione Shimano Nexus a 8 velocità e i freni idraulici garantiscono affidabilità e semplicità di utilizzo in ogni condizione meteorologica. La batteria da 500 Wh offre un'autonomia di circa 90 km per i tragitti quotidiani.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy 6061",
+      "motore": "Bosch Active Plus, 50 Nm",
+      "batteria": "500 Wh",
+      "trasmissione": "Shimano Nexus 8v",
+      "freni": "Shimano idraulici",
+      "ruote": "28\"",
+      "peso": "23 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 39,
+    "prezzo": 2520,
+    "nome_modello": "Giant Anytour E+ 0",
+    "brand": "Giant",
+    "categoria": "Trekking",
+    "descrizione_lunga": "La Giant Anytour E+ 0 è un e-trekking con motore SyncDrive Core da 50 Nm e telaio ALUXX in alluminio dalla geometria confortevole per i lunghi percorsi su asfalto e sterrato leggero. La posizione di guida eretta e le ruote da 28\" garantiscono stabilità e comfort. La batteria da 500 Wh e la trasmissione Shimano Altus a 9 velocità completano una bici versatile e accessibile.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio ALUXX",
+      "motore": "SyncDrive Core, 50 Nm",
+      "batteria": "500 Wh",
+      "trasmissione": "Shimano Altus 9v",
+      "freni": "Tektro HD-M275",
+      "ruote": "28\"",
+      "peso": "24 kg",
+      "autonomia": "90 km"
+    },
+    "varianti": []
+  },
+  {
+    "id": 40,
+    "prezzo": 3150,
+    "nome_modello": "Canyon Pathlite:ON 5 SUV",
+    "brand": "Canyon",
+    "categoria": "Trekking",
+    "descrizione_lunga": "La Canyon Pathlite:ON 5 SUV è un e-trekking robusto con motore Bosch Performance Line da 65 Nm e telaio in alluminio dal design SUV per affrontare percorsi misti asfalto e sterrato. Il portapacchi e l'equipaggiamento touring di serie la rendono pronta per i viaggi in autonomia. La batteria da 625 Wh e la trasmissione Shimano Nexus garantiscono affidabilità e autonomia.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "Bosch Performance Line, 65 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Shimano Nexus 8v",
+      "freni": "Shimano BR-MT200",
+      "ruote": "28\"",
+      "peso": "25 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 41,
+    "prezzo": 4990,
+    "nome_modello": "Lapierre Overvolt Explorer",
+    "brand": "Lapierre",
+    "categoria": "Trekking",
+    "descrizione_lunga": "La Lapierre Overvolt Explorer è un e-trekking completo con motore Bosch Performance CX da 85 Nm e telaio E-Zoom in alluminio. L'equipaggiamento full touring include illuminazione integrata, portapacchi e parafanghi per affrontare qualsiasi avventura. La batteria da 750 Wh e la trasmissione Shimano XT a 11 velocità garantiscono autonomia e prestazioni elevate sui percorsi più impegnativi.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio E-Zoom",
+      "motore": "Bosch CX, 85 Nm",
+      "batteria": "750 Wh",
+      "trasmissione": "Shimano XT 11v",
+      "freni": "Shimano MT520",
+      "ruote": "29\"",
+      "peso": "26 kg",
+      "autonomia": "110 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 42,
+    "prezzo": 4200,
+    "nome_modello": "Winora Yucatan 10 Wave",
+    "brand": "Winora",
+    "categoria": "Trekking",
+    "descrizione_lunga": "La Winora Yucatan 10 Wave è un e-trekking con telaio Wave step-through in alluminio per un accesso facilitato alla sella, ideale per i ciclisti che cercano praticità e comfort. Il motore Bosch Performance Line da 65 Nm e la trasmissione Enviolo CVT garantiscono una guida fluida e piacevole. La batteria da 625 Wh e l'equipaggiamento completo la rendono perfetta per i tragitti quotidiani.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio Wave step-through",
+      "motore": "Bosch Performance Line, 65 Nm",
+      "batteria": "625 Wh",
+      "trasmissione": "Enviolo Trekking CVT",
+      "freni": "Shimano Deore",
+      "ruote": "28\"",
+      "peso": "25 kg",
+      "autonomia": "100 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 43,
+    "prezzo": 5990,
+    "nome_modello": "Flyer Gotour6 3.10",
+    "brand": "Flyer",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Flyer Gotour6 3.10 è un e-trekking svizzero di alto profilo con motore Panasonic GX Ultimate da 85 Nm e la prestigiosa trasmissione Pinion C1.12 a 12 velocità, completamente integrata nel telaio. La batteria da 737 Wh garantisce un'autonomia eccezionale di 120 km. I freni Magura MT5 e il telaio in alluminio completano una bici pensata per i touring di lunga distanza.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alluminio",
+      "motore": "Panasonic GX Ultimate, 85 Nm",
+      "batteria": "737 Wh",
+      "trasmissione": "Pinion C1.12",
+      "freni": "Magura MT5",
+      "ruote": "28\"",
+      "peso": "27 kg",
+      "autonomia": "120 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 44,
+    "prezzo": 2090,
+    "nome_modello": "Rad Power Bikes RadRover 6",
+    "brand": "Rad Power",
+    "categoria": "E-Fat Bike",
+    "descrizione_lunga": "La Rad Power Bikes RadRover 6 è una fat bike elettrica accessibile con motore da 750W e pneumatici da 4\" per affrontare neve, spiaggia e sterrato con facilità. Il portapacchi incluso di serie e la batteria da 672 Wh la rendono ideale anche per il trasporto di carichi. I freni idraulici e la trasmissione a 7 velocità garantiscono un'esperienza di guida sicura e versatile in ogni condizione.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy",
+      "motore": "750W posteriore, 60 Nm",
+      "batteria": "672 Wh",
+      "trasmissione": "7 velocità",
+      "freni": "Dischi idraulici",
+      "ruote": "26\" x 4.0\"",
+      "peso": "32 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 45,
+    "prezzo": 2190,
+    "nome_modello": "Aventon Aventure.2",
+    "brand": "Aventon",
+    "categoria": "E-Fat Bike",
+    "descrizione_lunga": "L'Aventon Aventure.2 è una fat bike polivalente con motore da 750W, sospensione anteriore da 60 mm e pneumatici da 4\" per una guida confortevole su qualsiasi superficie. La batteria da 720 Wh garantisce un'autonomia di circa 75 km, mentre i freni idraulici assicurano una frenata potente e precisa. Un'ottima scelta per chi cerca avventura senza rinunciare al valore qualità-prezzo.",
+    "caratteristiche_tecniche": {
+      "telaio": "6061 Alluminio",
+      "motore": "750W posteriore, 80 Nm",
+      "batteria": "720 Wh",
+      "trasmissione": "8 velocità",
+      "sospensioni": "60 mm anteriore",
+      "freni": "Dischi idraulici",
+      "ruote": "26\" x 4.0\"",
+      "peso": "30 kg",
+      "autonomia": "75 km"
+    },
+    "varianti": [
+      "blu"
+    ]
+  },
+  {
+    "id": 46,
+    "prezzo": 2990,
+    "nome_modello": "Himiway Zebra D5 ST",
+    "brand": "Himiway",
+    "categoria": "E-Fat Bike",
+    "descrizione_lunga": "La Himiway Zebra D5 ST è una fat bike premium con motore da 750W e possibilità di installare una doppia batteria fino a 1920 Wh per un'autonomia superiore a 100 km. I pneumatici da 26x4\" garantiscono trazione su neve, sabbia e fango, mentre i freni idraulici da 180 mm assicurano una frenata sicura in ogni condizione. Una fat bike robusta e completa per ogni avventura.",
+    "caratteristiche_tecniche": {
+      "telaio": "6061 Alluminio",
+      "motore": "750W posteriore, 85 Nm",
+      "batteria": "960 Wh (doppia 1920 Wh)",
+      "trasmissione": "7 velocità Shimano",
+      "freni": "Dischi idraulici 180 mm",
+      "ruote": "26\" x 4.0\"",
+      "peso": "35 kg",
+      "autonomia": "100+ km"
+    },
+    "varianti": [
+      "verde"
+    ]
+  },
+  {
+    "id": 47,
+    "prezzo": 1390,
+    "nome_modello": "Lectric XP 3.0",
+    "brand": "Lectric",
+    "categoria": "E-Folding",
+    "descrizione_lunga": "La Lectric XP 3.0 è una e-bike pieghevole ultra-conveniente con motore da 750W e pneumatici fat da 3\", che offre un rapporto qualità-prezzo imbattibile nel settore. Il telaio pieghevole in alluminio si piega rapidamente per il trasporto o il rimessaggio. La batteria da 672 Wh garantisce un'autonomia di circa 72 km, rendendola ideale per i tragitti urbani e le piccole avventure fuori porta.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy pieghevole",
+      "motore": "750W posteriore, 55 Nm",
+      "batteria": "672 Wh",
+      "trasmissione": "5 velocità",
+      "freni": "Dischi idraulici",
+      "ruote": "20\" x 3.0\"",
+      "peso": "27 kg",
+      "autonomia": "72 km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 48,
+    "prezzo": 2990,
+    "nome_modello": "Juiced CrossCurrent X",
+    "brand": "Juiced",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Juiced CrossCurrent X è una e-bike da commuting ad alte prestazioni con motore da 750W e possibilità di configurazione con doppia batteria fino a 1344 Wh per un'autonomia record oltre i 130 km. Il portapacchi da 27 kg di capacità e i freni idraulici la rendono ideale per i pendolari che trasportano carichi. Una delle e-bike americane più potenti e complete nella sua fascia di prezzo.",
+    "caratteristiche_tecniche": {
+      "telaio": "6061 Alluminio",
+      "motore": "750W posteriore, 90 Nm",
+      "batteria": "1344 Wh (doppia)",
+      "trasmissione": "9 velocità",
+      "freni": "Dischi idraulici",
+      "ruote": "27.5\"",
+      "peso": "34 kg",
+      "autonomia": "130+ km"
+    },
+    "varianti": [
+      "bianco"
+    ]
+  },
+  {
+    "id": 49,
+    "prezzo": 1990,
+    "nome_modello": "Ride1UP 700 Series ST",
+    "brand": "Ride1UP",
+    "categoria": "E-City",
+    "descrizione_lunga": "La Ride1UP 700 Series ST è una e-bike step-through con motore da 750W e sospensione completa anteriore e posteriore da 100 mm per il massimo comfort su ogni tipo di fondo stradale. Il telaio in alluminio 6061 e i freni idraulici garantiscono sicurezza e affidabilità in ogni condizione. Un'ottima proposta per chi cerca prestazioni elevate a un prezzo accessibile con un comfort eccellente.",
+    "caratteristiche_tecniche": {
+      "telaio": "6061 Alluminio step-through",
+      "motore": "750W posteriore, 65 Nm",
+      "batteria": "614 Wh",
+      "trasmissione": "8 velocità",
+      "sospensioni": "100 mm anteriore / posteriore",
+      "freni": "Dischi idraulici",
+      "ruote": "27.5\"",
+      "peso": "28 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": []
+  },
+  {
+    "id": 50,
+    "prezzo": 3670,
+    "nome_modello": "Specialized Turbo Tero X",
+    "brand": "Specialized",
+    "categoria": "SUV",
+    "descrizione_lunga": "La Specialized Turbo Tero X è una e-bike SUV avventurosa con motore 2.0 da 50 Nm e pneumatici oversize da 29x2.4\" per affrontare strade miste, sterrati e sentieri con la massima versatilità. Il portapacchi integrato e il telaio in alluminio E5 la rendono pronta per il bikepacking e i lunghi tour. La batteria da 530 Wh e il peso contenuto di 22 kg la rendono agile e piacevole da guidare in ogni contesto.",
+    "caratteristiche_tecniche": {
+      "telaio": "Alloy E5",
+      "motore": "Specialized 2.0, 50 Nm",
+      "batteria": "530 Wh",
+      "trasmissione": "Microshift 9v",
+      "freni": "Tektro idraulici",
+      "ruote": "29\" x 2.4\"",
+      "peso": "22 kg",
+      "autonomia": "80 km"
+    },
+    "varianti": [
+      "nero"
+    ]
+  },
+  {
+    "id": 51,
+    "prezzo": 210,
+    "nome_modello": "Specialized Mode MIPS",
+    "brand": "Specialized",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il casco Specialized Mode MIPS è un casco ad alte prestazioni per strada e MTB con tecnologia MIPS per la protezione rotazionale in caso di impatto. Il sistema ANGi di rilevamento degli incidenti avvisa automaticamente i contatti di emergenza in caso di caduta. Con 42 prese d'aria e un peso di soli 250 g nella taglia M, offre ventilazione eccellente e comfort durante le uscite più intense.",
+    "caratteristiche_tecniche": {
+      "tipo": "Casco strada / MTB MIPS",
+      "peso": "250 g (taglia M)",
+      "taglie": "S / M / L",
+      "ventilazione": "42 prese d'aria",
+      "tecnologia": "ANGi + MIPS",
+      "sistema_di_ritenzione": "Tri-Fix web splitter"
+    }
+  },
+  {
+    "id": 52,
+    "prezzo": 260,
+    "nome_modello": "Sena R1",
+    "brand": "Sena",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Sena R1 è un casco comunicante open-face con Bluetooth 5.0 e intercom fino a 400 m per restare connessi con fino a 4 ciclisti contemporaneamente. L'audio stereo da 40 mm garantisce una qualità sonora eccellente per musica, chiamate e navigazione. L'autonomia di 12 ore in conversazione e 16 ore in ascolto musicale lo rende ideale per le uscite più lunghe in gruppo.",
+    "caratteristiche_tecniche": {
+      "tipo": "Casco comunicante",
+      "bluetooth": "5.0",
+      "intercom": "400 m (4 ciclisti)",
+      "audio": "stereo 40 mm",
+      "autonomia": "12h in conversazione / 16h in ascolto",
+      "batteria": "Li-Po 550 mAh"
+    }
+  },
+  {
+    "id": 53,
+    "prezzo": 135,
+    "nome_modello": "Abus Bordo 6000C",
+    "brand": "Abus",
+    "categoria": "Accessori",
+    "descrizione_lunga": "L'Abus Bordo 6000C è un lucchetto pieghevole ultra-compatto con codice a 6 cifre e sbarre in acciaio NVC da 5 mm resistenti al taglio, classificato Art.4/5 per la massima sicurezza. La custodia in neoprene inclusa permette di fissarlo facilmente al telaio o al portapacchi senza graffiare la bici. Con 90 cm di lunghezza, offre flessibilità di utilizzo in ogni situazione di parcheggio.",
+    "caratteristiche_tecniche": {
+      "tipo": "Lucchetto pieghevole",
+      "sicurezza": "Art.4/5",
+      "lunghezza": "90 cm",
+      "peso": "1.2 kg",
+      "materiale": "Acciaio 5 mm NVC",
+      "serratura": "Codice 6 cifre"
+    }
+  },
+  {
+    "id": 54,
+    "prezzo": 145,
+    "nome_modello": "Kryptonite New York Lock",
+    "brand": "Kryptonite",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Kryptonite New York Lock è considerato uno degli antifurti a U più sicuri al mondo, con spessore di 14 mm in acciaio temprato e certificazione Sold Secure Diamond, il massimo livello di sicurezza disponibile. Il cavo aggiuntivo da 5 mm incluso offre protezione supplementare per le ruote. La garanzia di 5 anni e il rimborso anti-furto ne fanno un investimento affidabile per la protezione della propria bici.",
+    "caratteristiche_tecniche": {
+      "tipo": "U-Lock",
+      "sicurezza": "Sold Secure Diamond",
+      "spessore": "14 mm",
+      "dimensioni": "100 x 175 mm",
+      "peso": "2 kg",
+      "garanzia": "5 anni"
+    }
+  },
+  {
+    "id": 55,
+    "prezzo": 180,
+    "nome_modello": "Ortlieb Back-Roller Classic",
+    "brand": "Ortlieb",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Le borse Ortlieb Back-Roller Classic sono le sacoches da bikepacking più affidabili sul mercato, in PVC 100% impermeabile con sistema di chiusura roll-top che garantisce tenuta all'acqua anche nelle condizioni più avverse. Il sistema di aggancio QL2.1 quick-lock permette di montarle e smontarle in pochi secondi. I riflettori 3M integrati aumentano la visibilità notturna per una sicurezza ottimale.",
+    "caratteristiche_tecniche": {
+      "tipo": "Borse posteriori",
+      "volume": "20 L / coppia (10 L cad.)",
+      "materiale": "PD620",
+      "impermeabilità": "IP64",
+      "fissaggio": "QL2.1",
+      "peso": "1 kg coppia"
+    }
+  },
+  {
+    "id": 56,
+    "prezzo": 35,
+    "nome_modello": "ROCKBROS Borsa",
+    "brand": "ROCKBROS",
+    "categoria": "Accessori",
+    "descrizione_lunga": "La borsa da bici ROCKBROS è una soluzione pratica e impermeabile in poliestere 700D da 10 litri per il portapacchi, con compartimenti multipli per organizzare al meglio il proprio equipaggiamento. Il sistema di fissaggio con velcro e archetto garantisce una posa stabile senza oscillazioni. La protezione IPX6 la rende resistente alla pioggia intensa, ideale per i tragitti quotidiani in ogni condizione meteo.",
+    "caratteristiche_tecniche": {
+      "tipo": "Borsa portapacchi",
+      "volume": "10 L",
+      "materiale": "Poliestere 700D",
+      "impermeabilità": "IPX6",
+      "fissaggio": "Velcro + archetto",
+      "peso": "450 g"
+    }
+  },
+  {
+    "id": 57,
+    "prezzo": 420,
+    "nome_modello": "Garmin Varia RCT715",
+    "brand": "Garmin",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Garmin Varia RCT715 è un fanale posteriore intelligente che combina un radar di rilevamento dei veicoli fino a 140 m con una videocamera HD 1080p per registrare tutto ciò che accade alle spalle del ciclista. La connettività ANT+ e Bluetooth permette di ricevere gli avvisi direttamente sul ciclocomputer o sullo smartphone. Un dispositivo essenziale per aumentare la sicurezza sulle strade trafficate.",
+    "caratteristiche_tecniche": {
+      "tipo": "Radar + videocamera posteriore",
+      "radar": "fino a 140 m",
+      "videocamera": "1080p @ 30fps",
+      "batteria": "6h di registrazione",
+      "connettività": "ANT+ / Bluetooth",
+      "peso": "72 g"
+    }
+  },
+  {
+    "id": 58,
+    "prezzo": 140,
+    "nome_modello": "Knog Blinder 1300",
+    "brand": "Knog",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Knog Blinder 1300 è un fanale anteriore USB ultra-potente da 1300 lumen in silicone flessibile con protezione IP67 per l'impermeabilità totale. I 4 modalità di illuminazione si adattano a qualsiasi condizione di guida, dall'ambiente notturno a quello diurno. La ricarica USB integrata e il fissaggio universale lo rendono compatibile con qualsiasi manubrio, senza attrezzi.",
+    "caratteristiche_tecniche": {
+      "potenza": "1300 lumen",
+      "modalità": "Steady / Flash",
+      "autonomia": "120 min max / 480 min eco",
+      "impermeabilità": "IP67",
+      "fissaggio": "universale",
+      "peso": "105 g"
+    }
+  },
+  {
+    "id": 59,
+    "prezzo": 290,
+    "nome_modello": "Wahoo ELEMNT BOLT",
+    "brand": "Wahoo",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Wahoo ELEMNT BOLT è un ciclocomputer GPS con schermo a colori da 2\" e LED di navigazione periferici per seguire il percorso con un semplice colpo d'occhio. La compatibilità con oltre 200 sensori ANT+, Bluetooth e WiFi e l'autonomia di 15 ore lo rendono ideale per le uscite più lunghe. La navigazione turn-by-turn e il design aerodinamico lo posizionano tra i migliori GPS da bici sul mercato.",
+    "caratteristiche_tecniche": {
+      "schermo": "2\" colore LED",
+      "GPS": "GPS / GLONASS / Galileo",
+      "batteria": "15h",
+      "connettività": "ANT+ / Bluetooth / WiFi",
+      "sensori_compatibili": "200+",
+      "peso": "68 g"
+    }
+  },
+  {
+    "id": 60,
+    "prezzo": 340,
+    "nome_modello": "Garmin Edge 530",
+    "brand": "Garmin",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Garmin Edge 530 è un ciclocomputer GPS avanzato con funzioni dedicate al MTB e alla strada, incluso il ClimbPro per la gestione delle salite, il supporto TrailForks per i sentieri e la cartografia TopoActive Europa preinstallata. Il display da 2.6\" ad alta risoluzione è leggibile anche in piena luce solare. L'autonomia di 20 ore e i 32 GB di memoria lo rendono il compagno perfetto per le avventure più lunghe.",
+    "caratteristiche_tecniche": {
+      "schermo": "2.6\" 246x322 px",
+      "GPS": "multi-GNSS",
+      "batteria": "20h",
+      "memoria": "32 GB",
+      "connettività": "ANT+ / Bluetooth",
+      "peso": "76 g"
+    }
+  },
+  {
+    "id": 61,
+    "prezzo": 55,
+    "nome_modello": "Xiaomi Portable Electric",
+    "brand": "Xiaomi",
+    "categoria": "Accessori",
+    "descrizione_lunga": "La pompa elettrica portatile Xiaomi è un accessorio compatto e multifunzione con pressione massima di 120 PSI, schermo LCD a colori e sistema di auto-stop che interrompe automaticamente il gonfiaggio alla pressione impostata. La connettività Bluetooth permette di controllare e programmare la pompa tramite l'app dedicata. La batteria da 2000 mAh si ricarica completamente in soli 2 ore, rendendola sempre pronta all'uso.",
+    "caratteristiche_tecniche": {
+      "pressione_max": "120 PSI",
+      "motore": "120 W",
+      "batteria": "2000 mAh",
+      "tempo_di_ricarica": "2h",
+      "display": "LCD a colori",
+      "peso": "500 g"
+    }
+  },
+  {
+    "id": 62,
+    "prezzo": 45,
+    "nome_modello": "Lezyne Trigger Drive",
+    "brand": "Lezyne",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Lezyne Trigger Drive è un fanale posteriore USB dal design elegante con 50 lumen di potenza e 7 modalità di illuminazione, inclusa la modalità Day Flash per la massima visibilità diurna. La protezione IPX7 lo rende totalmente impermeabile per l'uso in qualsiasi condizione atmosferica. La compatibilità Smart E-Bike permette di collegarlo direttamente al sistema elettrico della bici per una gestione automatica.",
+    "caratteristiche_tecniche": {
+      "potenza": "50 lumen",
+      "modalità": "7 (incluso Day Flash)",
+      "autonomia": "3-45h",
+      "ricarica": "USB-C 2h",
+      "impermeabilità": "IPX7",
+      "peso": "28 g"
+    }
+  },
+  {
+    "id": 63,
+    "prezzo": 65,
+    "nome_modello": "Muc-Off Clean & Protect",
+    "brand": "Muc-Off",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il kit Muc-Off Clean & Protect è la soluzione completa per la manutenzione e la pulizia della bici, con formula biodegradabile al 100% rispettosa dell'ambiente. Include detergente Nano Tech da 1 litro, lubrificante ceramico C3 da 50 ml, catena doc da 50 ml e sgrassatore per la trasmissione da 500 ml. Un kit essenziale per mantenere la bici in perfette condizioni dopo ogni uscita.",
+    "caratteristiche_tecniche": {
+      "contenuto_kit": "Nano Tech Bike Cleaner 1L, C3 Ceramic 50ml, Chain Doc 50ml, Drivetrain 500ml",
+      "utilizzo": "tutti i tipi di bici",
+      "biodegradabile": "100%",
+      "peso_totale": "2 kg"
+    }
+  },
+  {
+    "id": 64,
+    "prezzo": 12,
+    "nome_modello": "Finish Line Wet Lube",
+    "brand": "Finish Line",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Finish Line Wet Lube è un lubrificante per catena con formula Teflon+ e ceramica, progettato per resistere all'umidità, alla pioggia e al fango garantendo una lubrificazione duratura fino a oltre 200 km. La formula non tossica è sicura per l'utente e per l'ambiente. L'applicazione goccia a goccia permette di dosare con precisione il lubrificante su ogni singolo maglie della catena.",
+    "caratteristiche_tecniche": {
+      "tipo": "Wet lube Teflon+",
+      "condizioni": "pioggia / fango",
+      "applicazione": "goccia a goccia",
+      "durata": "200+ km",
+      "compatibilità": "tutti i deragliatori"
+    }
+  },
+  {
+    "id": 65,
+    "prezzo": 45,
+    "nome_modello": "Quad Lock",
+    "brand": "Quad Lock",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Quad Lock è il sistema di supporto per smartphone più sicuro e versatile del mercato, con il meccanismo di blocco twist-lock a doppio stadio che garantisce la massima sicurezza anche sulle strade più sconnesse. Compatibile con oltre 50 accessori e adatto a smartphone da 4.5\" a 6.5\", si installa e rimuove in pochi secondi. Il sistema di ammortizzazione delle vibrazioni Dual Stage Lock protegge lo smartphone dai danni.",
+    "caratteristiche_tecniche": {
+      "fissaggio": "Twist-lock a doppio stadio",
+      "dimensione_smartphone": "4.5\" - 6.5\"",
+      "materiale": "Nylon rinforzato",
+      "sistema_antivibrazioni": "Dual Stage Lock",
+      "peso": "60 g"
+    }
+  },
+  {
+    "id": 66,
+    "prezzo": 150,
+    "nome_modello": "Giro Rodeo",
+    "brand": "Giro",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Le scarpe Giro Rodeo sono delle flat MTB leggere e traspiranti con suola Vibram Megagrip per un'aderenza eccezionale sui pedali e sulle rocce durante le hiking section. Il puntale rinforzato protegge le dita dagli urti accidentali sui trail tecnici. La chiusura BOA L6 permette una regolazione precisa e rapida della calzata per il massimo comfort durante le uscite più lunghe.",
+    "caratteristiche_tecniche": {
+      "tipo": "Flat MTB",
+      "suola": "Vibram Megagrip",
+      "peso": "395 g / coppia tg. 42",
+      "tomaia": "mesh sintetico",
+      "chiusura": "BOA L6"
+    }
+  },
+  {
+    "id": 67,
+    "prezzo": 95,
+    "nome_modello": "Shimano PD-EH500 SPD",
+    "brand": "Shimano",
+    "categoria": "Accessori",
+    "descrizione_lunga": "I pedali Shimano PD-EH500 sono dei pedali ibridi che combinano un lato SPD per le tacchette MTB e un lato piatto per le scarpe normali, offrendo la massima versatilità per ogni tipo di utilizzo. Il corpo in alluminio e l'asse in acciaio cromoly garantiscono resistenza e durata nel tempo. Il peso di 386 g per coppia li rende leggeri e adatti sia per l'uso urbano che per il trail.",
+    "caratteristiche_tecniche": {
+      "tipo": "Ibrido SPD / flat",
+      "piastrine": "cro-moly",
+      "corpo": "alluminio",
+      "asse": "acciaio cromo",
+      "peso": "386 g coppia"
+    }
+  },
+  {
+    "id": 68,
+    "prezzo": 160,
+    "nome_modello": "Brooks B17 Carved",
+    "brand": "Brooks",
+    "categoria": "Accessori",
+    "descrizione_lunga": "La sella Brooks B17 Carved è l'iconica sella in cuoio pregiato con scanalatura centrale per il massimo comfort sui lunghi percorsi in bici. I rivetti in ottone e le guide in acciaio inossidabile garantiscono durabilità e resistenza nel tempo. Con l'uso, il cuoio si adatta alla forma del ciclista creando una sella personalizzata, rendendola uno degli accessori più amati dai cicloturisti di tutto il mondo.",
+    "caratteristiche_tecniche": {
+      "materiale": "Cuoio premium",
+      "guide": "Acciaio inossidabile",
+      "peso": "520 g",
+      "dimensioni": "275 x 175 mm",
+      "fissaggio": "standard"
+    }
+  },
+  {
+    "id": 69,
+    "prezzo": 25,
+    "nome_modello": "Specchietto B&M",
+    "brand": "B&M",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Lo specchietto B&M è un retrovisore regolabile per bici dal design compatto e antivibrazioni, con vetro acrilico convexo da 80 mm che offre un ampio campo visivo verso il traffico posteriore. Il braccio regolabile a 360° permette di posizionarlo nella direzione ottimale per ogni ciclista. Il collare da 22.2 mm è compatibile con la maggior parte dei manubri in commercio per un'installazione rapida e sicura.",
+    "caratteristiche_tecniche": {
+      "tipo": "Retrovisore manubrio",
+      "vetro": "Acrilico convexo 80 mm",
+      "braccio": "Regolabile 360°",
+      "fissaggio": "Collare 22.2 mm",
+      "peso": "95 g"
+    }
+  },
+  {
+    "id": 70,
+    "prezzo": 75,
+    "nome_modello": "Ursus Wave",
+    "brand": "Ursus",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il portapacchi Ursus Wave è un portapacchi posteriore in alluminio rinforzato con sistema Quick-Release per un montaggio e smontaggio rapido senza attrezzi. La superficie antiscivolo e il piano portante da 13x33 cm con capacità massima di 27 kg lo rendono ideale per il trasporto di borse e carichi voluminosi. Il design elegante e il peso contenuto di 650 g lo rendono adatto a qualsiasi tipo di bici.",
+    "caratteristiche_tecniche": {
+      "carico_max": "27 kg",
+      "materiale": "Alluminio 6061",
+      "fissaggio": "QR 26.8 / 27.2 mm",
+      "piano": "13 x 33 cm",
+      "peso": "650 g"
+    }
+  },
+  {
+    "id": 71,
+    "prezzo": 120,
+    "nome_modello": "Thule Tour Rack",
+    "brand": "Thule",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il Thule Tour Rack è un portapacchi universale in alluminio anodizzato con sistema di fissaggio rapido compatibile con forcellini da 24 a 29 mm, ideale per la maggior parte delle bici da trekking e city bike. La capacità di carico di 18 kg e la compatibilità con le borse Thule lo rendono la soluzione ideale per il cicloturismo. Il peso di soli 1.1 kg contribuisce a mantenere leggera la bici.",
+    "caratteristiche_tecniche": {
+      "carico_max": "18 kg",
+      "materiale": "Alluminio anodizzato",
+      "fissaggio": "universale 24-29 mm",
+      "peso": "1.1 kg",
+      "dimensioni": "37 x 15 cm"
+    }
+  },
+  {
+    "id": 72,
+    "prezzo": 450,
+    "nome_modello": "Burley Bee",
+    "brand": "Burley",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Il rimorchio per bambini Burley Bee è una soluzione sicura e confortevole per trasportare fino a 2 bambini con un carico massimo di 32 kg. Il sistema di sospensione ammortizzato riduce le vibrazioni per garantire il massimo comfort ai piccoli passeggeri. Il vano bagagli da 15 litri e la bandierina di sicurezza inclusa lo rendono completo e pronto all'uso per le uscite in famiglia.",
+    "caratteristiche_tecniche": {
+      "carico_max": "32 kg (2 bambini)",
+      "ruote": "16\"",
+      "peso": "10 kg",
+      "volume": "15 L",
+      "fissaggio": "universale"
+    }
+  },
+  {
+    "id": 73,
+    "prezzo": 180,
+    "nome_modello": "Evoc FR Trail Unlimited",
+    "brand": "Evoc",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Lo zaino Evoc FR Trail Unlimited è lo zaino da MTB enduro più completo sul mercato, con capacità di 30 litri e un sistema di protezione dorsale Air Pad certificato per assorbire gli impatti nelle cadute. Il serbatoio Camelbak da 3 litri incluso garantisce un'idratazione costante durante le uscite più lunghe. Il sistema di fissaggio integrato per il casco FR Ergo permette di portarlo a mano durante le hiking section.",
+    "caratteristiche_tecniche": {
+      "volume": "30 L",
+      "peso": "1 kg",
+      "materiale": "420D Nylon",
+      "serbatoio": "Camelbak 3L incluso",
+      "protezione_dorsale": "Air Pad",
+      "fissaggio_casco": "FR Ergo"
+    }
+  },
+  {
+    "id": 74,
+    "prezzo": 190,
+    "nome_modello": "Five Ten Freerider Pro",
+    "brand": "Adidas",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Le Five Ten Freerider Pro sono le scarpe flat enduro di riferimento per i professionisti, con la celebre suola Stealth S1 dotty per un'aderenza sui pedali senza precedenti. Il puntale rinforzato in Stealth C4 protegge le dita nelle situazioni più aggressive, mentre la tomaia in cuoio e materiale sintetico garantisce resistenza e traspirabilità. La chiusura con lacci classici permette una regolazione personalizzata.",
+    "caratteristiche_tecniche": {
+      "tipo": "Flat enduro pro",
+      "suola": "Stealth S1 dotty",
+      "puntale": "Stealth C4",
+      "peso": "355 g / coppia tg. 42",
+      "tomaia": "Cuoio / sintetico",
+      "chiusura": "Lacci"
+    }
+  },
+  {
+    "id": 75,
+    "prezzo": 240,
+    "nome_modello": "Oakley Jawbreaker",
+    "brand": "Oakley",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Gli occhiali Oakley Jawbreaker sono il riferimento assoluto per il ciclismo ad alte prestazioni, con lenti intercambiabili Prizm Trail che ottimizzano la percezione dei contrasti su ogni tipo di sentiero. Il sistema Switchlock permette di cambiare le lenti in pochi secondi senza attrezzi per adattarsi alle condizioni di luce. La montatura O-Matter ultra-leggera e il trattamento anti-appannamento garantiscono comfort e visibilità in ogni condizione climatica.",
+    "caratteristiche_tecniche": {
+      "lenti": "Prizm Trail (rosa) + chiara",
+      "tecnologia": "Switchlock + High Definition Optics",
+      "montatura": "O-Matter",
+      "anti_appannamento": "sì",
+      "peso": "34 g",
+      "custodia": "inclusa"
+    }
   }
 ]
