@@ -1,0 +1,73 @@
+Rôle : Développeur Full-Stack Senior & Expert UI/UX.
+Objectif : Créer un site e-commerce de luxe "Sales Machine" pour Cicli Volante.
+Technologies : EXCLUSIVEMENT PHP 8.x, HTML5, Vanilla JavaScript, CSS3 (Tailwind via CDN).
+Contrainte : AUCUN framework JS (No React, No Node). Design Premium "Apple Style".
+
+1. ANALYSE DU JSON ET BASE DE DONNÉES
+Le fichier products.json contient 75 produits.
+
+Structure SQL : Créer une base SQLite (database.sqlite) avec :
+
+Table products : id, prezzo, nome_modello, brand, categoria, descrizione_lunga, caratteristiche_tecniche (format JSON/TEXT), varianti (format JSON/TEXT).
+
+Script de Migration : Créer migrate.php pour importer toutes les données.
+
+Clés spécifiques : Utiliser prezzo pour le prix et nome_modello pour le titre.
+
+2. DESIGN ET EXPÉRIENCE UTILISATEUR (ITALIEN UNIQUEMENT)
+Langue : Tout le site doit être en Italien.
+
+Look : Fond blanc, texte anthracite, accents vert #2ECC71.
+
+Header : Sticky, effet flou (glassmorphism), logo à gauche, panier à droite.
+
+Filtres (Index) : 4 onglets dynamiques : E-MTB, MTB, Road, Accessori.
+
+Système de Pastilles (Product Page) : - Lire le tableau varianti du JSON.
+
+Si varianti contient des couleurs (ex: "rosso", "nero"), afficher des cercles cliquables.
+
+Au clic, changer l'image principale : /public/img/{id}_{couleur}.webp.
+
+Si pas de variante, ne rien afficher.
+
+3. TUNNEL DE COMMANDE ET PAIEMENT BBVA
+Checkout : Page ultra-épurée.
+
+Instructions de Paiement : Afficher clairement dans un encadré stylisé :
+
+Beneficiario: Cicli Volante
+
+IBAN: IT52 PO35 7601 6010 1000 8072 943
+
+BIC: BBVAITM2XXX | Banca: BBVA
+
+Preuve de Virement (Crucial) : Ajouter un champ d'upload obligatoire : "Carica lo screenshot del bonifico effettuato".
+
+Confirmation : Enregistrer la commande dans la table orders avec le nom du fichier uploadé.
+
+4. SECTIONS SUPPLÉMENTAIRES & RÉASSURANCE
+Avis Clients : Avant le footer, ajouter une section "Cosa dicono i nostri clienti" avec des témoignages (étoiles dorées, texte élégant).
+
+Footer : Liens de contact, mentions légales, et rappel du logo.
+
+Emails (SMTP) : Fonction PHP pour envoyer une confirmation au client et une alerte avec la preuve de paiement à l'admin.
+
+5. LIVRABLES (CODE COMPLET)
+Générer le code source prêt à l'emploi pour :
+
+db_config.php (Connexion PDO SQLite)
+
+migrate.php (Importation automatique du JSON)
+
+index.php (Accueil + Filtres JS)
+
+product.php (Page produit + sélecteur de pastilles)
+
+checkout.php (Paiement + Upload)
+
+thank-you.php (Confirmation)
+
+assets/js/main.js (Animations et logique de changement d'image)
+
+Design : Je veux des ombres portées douces, des arrondis de 16px (rounded-2xl), et une fluidité parfaite.
