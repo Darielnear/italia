@@ -1,0 +1,60 @@
+[
+  {
+    "id": 1,
+    "prezzo": 450000,
+    "nome_modello": "Volante E-Racer X1",
+    "brand": "Cicli Volante",
+    "categoria": "E-MTB",
+    "descrizione_lunga": "La E-MTB definitiva per dominare ogni sentiero. Potenza pura e design italiano.",
+    "caratteristiche_tecniche": {
+      "Motore": "Bosch Performance CX",
+      "Batteria": "750Wh",
+      "Telaio": "Carbonio Monoscocca"
+    },
+    "varianti": ["rosso", "nero", "titanio"],
+    "immagine_principale": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&q=80&w=1000"
+  },
+  {
+    "id": 2,
+    "prezzo": 320000,
+    "nome_modello": "Volante Strada Pro",
+    "brand": "Cicli Volante",
+    "categoria": "Road",
+    "descrizione_lunga": "Leggerezza e aerodinamica senza compromessi. Per chi cerca la velocità pura.",
+    "caratteristiche_tecniche": {
+      "Gruppo": "Shimano Dura-Ace",
+      "Peso": "6.8kg",
+      "Ruote": "Carbon 50mm"
+    },
+    "varianti": ["bianco", "blu"],
+    "immagine_principale": "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=1000"
+  },
+  {
+    "id": 3,
+    "prezzo": 280000,
+    "nome_modello": "Volante Trail Master",
+    "brand": "Cicli Volante",
+    "categoria": "MTB",
+    "descrizione_lunga": "Agilità e controllo per i singletrack più tecnici.",
+    "caratteristiche_tecniche": {
+      "Sospensioni": "Fox 36 Factory",
+      "Freni": "Magura MT7"
+    },
+    "varianti": ["verde", "nero"],
+    "immagine_principale": "https://images.unsplash.com/photo-1511994298220-41270c1f22ed?auto=format&fit=crop&q=80&w=1000"
+  },
+  {
+    "id": 4,
+    "prezzo": 15000,
+    "nome_modello": "Casco Aero V1",
+    "brand": "Cicli Volante",
+    "categoria": "Accessori",
+    "descrizione_lunga": "Sicurezza e stile. Aerodinamica testata in galleria del vento.",
+    "caratteristiche_tecniche": {
+      "Peso": "220g",
+      "Ventilazione": "18 fori"
+    },
+    "varianti": ["nero", "giallo"],
+    "immagine_principale": "https://images.unsplash.com/photo-1559087316-6b2633cc7641?auto=format&fit=crop&q=80&w=1000"
+  }
+]
