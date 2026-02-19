@@ -1,64 +1,92 @@
 <?php
-require 'db_config.php';
+// migrate.php - Script di migrazione per Cicli Volante
+require_once 'db_config.php';
 
-// Create tables
-$db->exec("CREATE TABLE IF NOT EXISTS products (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    prezzo INTEGER NOT NULL,
-    nome_modello TEXT NOT NULL,
-    brand TEXT NOT NULL,
-    categoria TEXT NOT NULL,
-    descrizione_lunga TEXT NOT NULL,
-    caratteristiche_tecniche TEXT NOT NULL,
-    varianti TEXT NOT NULL,
-    immagine_principale TEXT NOT NULL
-)");
-
-$db->exec("CREATE TABLE IF NOT EXISTS orders (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome_cliente TEXT NOT NULL,
-    email_cliente TEXT NOT NULL,
-    indirizzo_spedizione TEXT NOT NULL,
-    totale INTEGER NOT NULL,
-    stato TEXT NOT NULL DEFAULT 'in_attesa',
-    prova_pagamento TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-)");
-
-$db->exec("CREATE TABLE IF NOT EXISTS order_items (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    order_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantita INTEGER NOT NULL,
-    prezzo_unitario INTEGER NOT NULL,
-    variante_scelta TEXT,
-    FOREIGN KEY(order_id) REFERENCES orders(id),
-    FOREIGN KEY(product_id) REFERENCES products(id)
-)");
-
-// Import data from JSON
-$json = file_get_contents('products.json');
-$products = json_decode($json, true);
-
-$stmt = $db->prepare("INSERT INTO products (prezzo, nome_modello, brand, categoria, descrizione_lunga, caratteristiche_tecniche, varianti, immagine_principale) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
-foreach ($products as $product) {
-    // Check if product exists to avoid duplicates on multiple runs
-    $check = $db->prepare("SELECT id FROM products WHERE nome_modello = ?");
-    $check->execute([$product['nome_modello']]);
-    if ($check->fetch()) continue;
-
-    $stmt->execute([
-        $product['prezzo'],
-        $product['nome_modello'],
-        $product['brand'],
-        $product['categoria'],
-        $product['descrizione_lunga'],
-        json_encode($product['caratteristiche_tecniche']),
-        json_encode($product['varianti']),
-        $product['immagine_principale']
-    ]);
+$json_file = 'products.json';
+if (!file_exists($json_file)) {
+    die("File products.json non trovato.");
 }
 
-echo "Migrazione completata con successo.";
+$products = json_decode(file_get_contents($json_file), true);
+
+try {
+    // Creazione tabelle
+    $pdo->exec("DROP TABLE IF EXISTS order_items CASCADE");
+    $pdo->exec("DROP TABLE IF EXISTS orders CASCADE");
+    $pdo->exec("DROP TABLE IF EXISTS products CASCADE");
+
+    $pdo->exec("CREATE TABLE products (
+        id SERIAL PRIMARY KEY,
+        external_id INTEGER UNIQUE,
+        nome_modello TEXT NOT NULL,
+        brand TEXT,
+        categoria TEXT,
+        prezzo DECIMAL(10,2),
+        descrizione_lunga TEXT,
+        caratteristiche_tecniche JSONB,
+        varianti JSONB,
+        immagine_main TEXT
+    )");
+
+    $pdo->exec("CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        customer_name TEXT NOT NULL,
+        customer_email TEXT NOT NULL,
+        total_amount DECIMAL(10,2),
+        tracking_code TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+
+    $pdo->exec("CREATE TABLE order_items (
+        id SERIAL PRIMARY KEY,
+        order_id INTEGER REFERENCES orders(id),
+        product_id INTEGER REFERENCES products(id),
+        quantity INTEGER,
+        price DECIMAL(10,2)
+    )");
+
+    // Scannerizza le immagini per trovare l'estensione corretta
+    $img_dir = 'public/img/';
+    $img_files = [];
+    if (is_dir($img_dir)) {
+        $files = scandir($img_dir);
+        foreach ($files as $file) {
+            if ($file !== '.' && $file !== '..') {
+                $path_parts = pathinfo($file);
+                $img_files[$path_parts['filename']] = $file;
+            }
+        }
+    }
+
+    $stmt = $pdo->prepare("INSERT INTO products 
+        (external_id, nome_modello, brand, categoria, prezzo, descrizione_lunga, caratteristiche_tecniche, varianti, immagine_main) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    foreach ($products as $p) {
+        $id = $p['id'];
+        $immagine = null;
+        
+        // Cerca l'immagine corrispondente all'ID (es: "1.jpg", "1.png", "1.webp")
+        if (isset($img_files[$id])) {
+            $immagine = $img_files[$id];
+        }
+
+        $stmt->execute([
+            $id,
+            $p['nome_modello'],
+            $p['brand'] ?? null,
+            $p['categoria'] ?? null,
+            $p['prezzo'],
+            $p['descrizione_lunga'] ?? null,
+            json_encode($p['caratteristiche_tecniche'] ?? []),
+            json_encode($p['varianti'] ?? []),
+            $immagine
+        ]);
+    }
+
+    echo "Migrazione completata con successo!\n";
+
+} catch (PDOException $e) {
+    die("Errore durante la migrazione: " . $e->getMessage());
+}
 ?>
