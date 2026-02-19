@@ -40,7 +40,7 @@
             
             <div>
                 <h4 class="text-xs font-black uppercase tracking-[0.2em] text-anthracite mb-8">Newsletter</h4>
-                <p class="text-sm text-gray-400 font-light mb-6">Iscriviti pour recevoir les dernières nouveautés et offres exclusives.</p>
+                <p class="text-sm text-gray-400 font-light mb-6">Iscriviti per ricevere le ultime novità e offerte esclusive.</p>
                 <form class="flex gap-2">
                     <input type="email" placeholder="Email" class="bg-white border border-gray-200 rounded-full px-6 py-3 text-sm focus:outline-none focus:border-accent w-full">
                     <button class="bg-anthracite text-white rounded-full p-3 hover:bg-accent transition-colors">

@@ -11,10 +11,17 @@
         <nav class="hidden lg:flex items-center gap-10">
             <a href="index.php" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">Tutte le bici</a>
             <a href="index.php?brand=Specialized" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">E-MTB</a>
-            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-accent hover:text-anthracite transition-colors">Promozioni</a>
+            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">E-City & Urban</a>
+            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">Trekking & Gravel</a>
+            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-accent hover:text-anthracite transition-colors">Accessori</a>
         </nav>
 
         <div class="flex items-center gap-4">
+            <div class="hidden xl:flex items-center gap-6 mr-4">
+                <a href="#" class="text-[9px] font-bold uppercase tracking-widest text-anthracite/60 hover:text-anthracite transition-colors">Assistenza</a>
+                <a href="#" class="text-[9px] font-bold uppercase tracking-widest text-anthracite/60 hover:text-anthracite transition-colors">Traccia ordine</a>
+                <a href="#" class="text-[9px] font-bold uppercase tracking-widest text-anthracite/60 hover:text-anthracite transition-colors">Accedi</a>
+            </div>
             <a href="checkout.php" class="group relative flex items-center justify-center w-12 h-12 rounded-full glass hover:bg-anthracite transition-all duration-500 shadow-sm">
                 <svg class="group-hover:stroke-white transition-colors" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"/>

@@ -62,13 +62,13 @@ $products = $stmt->fetchAll();
     </div>
     <div class="relative z-10 text-center px-6">
         <h1 class="text-white text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-4">
-            L'ÉLÉGANCE <br> <span class="font-playfair italic font-normal lowercase">en mouvement</span>
+            L'ELEGANZA <br> <span class="font-playfair italic font-normal lowercase">in movimento</span>
         </h1>
         <p class="text-white/80 text-lg md:text-xl font-light tracking-wide max-w-2xl mx-auto mb-8">
-            Découvrez la perfection technologique alliée au design italien. Cicli Volante redéfinit les standards du cyclisme de luxe.
+            Scopri la perfezione tecnologica unita al design italiano. Cicli Volante ridefinisce gli standard del ciclismo di lusso.
         </p>
         <a href="#shop" class="inline-block bg-white text-anthracite px-10 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-accent hover:text-white transition-all transform hover:scale-105">
-            Explorer la collection
+            Acquista Ora
         </a>
     </div>
 </section>
@@ -77,11 +77,11 @@ $products = $stmt->fetchAll();
 <main id="shop" class="max-w-7xl mx-auto px-6 py-24">
     <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
         <div>
-            <h2 class="text-4xl font-black tracking-tight uppercase mb-2">La Collection</h2>
-            <p class="text-gray-400 font-light">Performance pure, esthétique absolue.</p>
+            <h2 class="text-4xl font-black tracking-tight uppercase mb-2">La Collezione</h2>
+            <p class="text-gray-400 font-light">Performance pura, estetica assoluta.</p>
         </div>
         <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
-            <a href="index.php" class="whitespace-nowrap px-6 py-2 rounded-full border border-gray-100 text-[10px] font-bold uppercase tracking-widest <?= !$selected_brand ? 'bg-anthracite text-white border-anthracite' : 'text-gray-400 hover:border-gray-300' ?>">Tous les modèles</a>
+            <a href="index.php" class="whitespace-nowrap px-6 py-2 rounded-full border border-gray-100 text-[10px] font-bold uppercase tracking-widest <?= !$selected_brand ? 'bg-anthracite text-white border-anthracite' : 'text-gray-400 hover:border-gray-300' ?>">Tutte le bici</a>
             <?php foreach ($brands as $brand): ?>
                 <a href="index.php?brand=<?= urlencode($brand) ?>" class="whitespace-nowrap px-6 py-2 rounded-full border border-gray-100 text-[10px] font-bold uppercase tracking-widest <?= $selected_brand === $brand ? 'bg-anthracite text-white border-anthracite' : 'text-gray-400 hover:border-gray-300' ?>">
                     <?= $brand ?>
@@ -90,7 +90,7 @@ $products = $stmt->fetchAll();
         </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <?php foreach ($products as $p): ?>
             <div class="group bg-[#F9F9F9] rounded-[2rem] p-6 transition-all duration-500 hover:bg-white hover:soft-shadow border border-transparent hover:border-gray-50">
                 <div class="aspect-[4/3] mb-6 relative overflow-hidden flex items-center justify-center">
@@ -117,18 +117,18 @@ $products = $stmt->fetchAll();
 <!-- Testimonials Section -->
 <section class="py-24 bg-anthracite overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 mb-16">
-        <h2 class="text-white text-3xl font-black uppercase tracking-tight">Expériences <span class="font-playfair italic text-accent lowercase">volante</span></h2>
+        <h2 class="text-white text-3xl font-black uppercase tracking-tight">Esperienze <span class="font-playfair italic text-accent lowercase">volante</span></h2>
     </div>
     
     <div class="marquee">
         <div class="marquee-content">
             <?php 
             $testimonials = [
-                ['name' => 'Marco Rossi', 'text' => 'Une expérience de conduite inégalée. Le design est sublime.'],
-                ['name' => 'Elena Bianchi', 'text' => 'Plus qu\'un vélo, c\'est un bijou technologique.'],
-                ['name' => 'Giovanni Silva', 'text' => 'Le service client est à la hauteur de la qualité des vélos.'],
-                ['name' => 'Sophia Lorenzi', 'text' => 'Incroyable agilité en montée. Cicli Volante est le futur.'],
-                ['name' => 'Alessandro Volta', 'text' => 'Un équilibre parfait entre confort et performance brute.'],
+                ['name' => 'Marco Rossi', 'text' => 'Un\'esperienza di guida senza pari. Il design è sublime.'],
+                ['name' => 'Elena Bianchi', 'text' => 'Più che una bici, è un gioiello tecnologico.'],
+                ['name' => 'Giovanni Silva', 'text' => 'Il servizio clienti è all\'altezza della qualità delle bici.'],
+                ['name' => 'Sophia Lorenzi', 'text' => 'Incredibile agilità in salita. Cicli Volante è il futuro.'],
+                ['name' => 'Alessandro Volta', 'text' => 'Un equilibrio perfetto tra comfort e prestazioni pure.'],
             ];
             foreach (array_merge($testimonials, $testimonials) as $t): ?>
                 <div class="flex-none w-80 bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
