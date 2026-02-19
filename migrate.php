@@ -1,59 +1,55 @@
 <?php
-// migrate.php - Script di migrazione per Cicli Volante
+// migrate.php - Migrazione SQLite per Cicli Volante
 require_once 'db_config.php';
 
 $json_file = 'products.json';
 if (!file_exists($json_file)) {
-    die("File products.json non trovato.");
+    die("Errore: products.json non trovato.");
 }
 
 $products = json_decode(file_get_contents($json_file), true);
 
 try {
-    // Creazione tabelle
-    $pdo->exec("DROP TABLE IF EXISTS order_items CASCADE");
-    $pdo->exec("DROP TABLE IF EXISTS orders CASCADE");
-    $pdo->exec("DROP TABLE IF EXISTS products CASCADE");
+    // Reset database
+    $pdo->exec("DROP TABLE IF EXISTS orders");
+    $pdo->exec("DROP TABLE IF EXISTS products");
 
+    // Tabella Prodotti
     $pdo->exec("CREATE TABLE products (
-        id SERIAL PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         external_id INTEGER UNIQUE,
         nome_modello TEXT NOT NULL,
         brand TEXT,
         categoria TEXT,
-        prezzo DECIMAL(10,2),
+        prezzo REAL,
         descrizione_lunga TEXT,
-        caratteristiche_tecniche JSONB,
-        varianti JSONB,
+        caratteristiche_tecniche TEXT,
+        varianti TEXT,
         immagine_main TEXT
     )");
 
+    // Tabella Ordini Semplificata
     $pdo->exec("CREATE TABLE orders (
-        id SERIAL PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         customer_name TEXT NOT NULL,
         customer_email TEXT NOT NULL,
-        total_amount DECIMAL(10,2),
+        id_prodotto INTEGER,
+        colore_scelto TEXT,
+        prezzo_finale REAL,
         tracking_code TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
-    $pdo->exec("CREATE TABLE order_items (
-        id SERIAL PRIMARY KEY,
-        order_id INTEGER REFERENCES orders(id),
-        product_id INTEGER REFERENCES products(id),
-        quantity INTEGER,
-        price DECIMAL(10,2)
-    )");
-
-    // Scannerizza le immagini per trovare l'estensione corretta
+    // Scannerizza immagini con estensioni miste
     $img_dir = 'public/img/';
     $img_files = [];
     if (is_dir($img_dir)) {
         $files = scandir($img_dir);
         foreach ($files as $file) {
             if ($file !== '.' && $file !== '..') {
-                $path_parts = pathinfo($file);
-                $img_files[$path_parts['filename']] = $file;
+                $info = pathinfo($file);
+                // Mappa il nome file (ID) all'estensione trovata
+                $img_files[$info['filename']] = $file;
             }
         }
     }
@@ -63,16 +59,11 @@ try {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     foreach ($products as $p) {
-        $id = $p['id'];
-        $immagine = null;
-        
-        // Cerca l'immagine corrispondente all'ID (es: "1.jpg", "1.png", "1.webp")
-        if (isset($img_files[$id])) {
-            $immagine = $img_files[$id];
-        }
+        $ext_id = $p['id'];
+        $immagine = isset($img_files[$ext_id]) ? $img_files[$ext_id] : null;
 
         $stmt->execute([
-            $id,
+            $ext_id,
             $p['nome_modello'],
             $p['brand'] ?? null,
             $p['categoria'] ?? null,
@@ -84,9 +75,9 @@ try {
         ]);
     }
 
-    echo "Migrazione completata con successo!\n";
+    echo "Migrazione SQLite completata con successo!\n";
 
-} catch (PDOException $e) {
-    die("Errore durante la migrazione: " . $e->getMessage());
+} catch (Exception $e) {
+    die("Errore: " . $e->getMessage());
 }
 ?>
