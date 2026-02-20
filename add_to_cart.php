@@ -1,27 +1,20 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 
-// On vérifie qu'on a bien reçu un ID de produit
-if (isset($_POST['product_id'])) {
-    $id = $_POST['product_id'];
+$id = $_POST['product_id'] ?? null;
 
-    // Si le panier n'existe pas encore dans la session, on le crée
+if ($id) {
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
-
-    // On ajoute le produit ou on augmente la quantité
-    if (isset($_SESSION['cart'][$id])) {
-        $_SESSION['cart'][$id]++;
-    } else {
-        $_SESSION['cart'][$id] = 1;
-    }
-
-    // On calcule le nouveau total d'articles
-    $total = array_sum($_SESSION['cart']);
-
-    // INDISPENSABLE : On répond au JavaScript avec le nouveau total
-    header('Content-Type: application/json');
-    echo json_encode(['totalItems' => $total]);
-    exit;
+    
+    $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
+    
+    echo json_encode([
+        'status' => 'success',
+        'total' => array_sum($_SESSION['cart']) // Renvoie la clé 'total'
+    ]);
+} else {
+    echo json_encode(['status' => 'error']);
 }

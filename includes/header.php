@@ -1,40 +1,55 @@
-<div class="fixed top-0 w-full z-[60] bg-anthracite text-white text-[9px] font-black py-2.5 text-center uppercase tracking-[0.25em]">
-    OFFERTA ESCLUSIVA: SPEDIZIONE GRATUITA SOPRA I 500€
-</div>
+<?php if (session_status() === PHP_SESSION_NONE) session_start(); ?>
+<style>
+    @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.4); } 100% { transform: scale(1); } }
+    .animate-pop { animation: pop 0.3s ease-out; }
+</style>
 
-<header x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)" :class="scrolled ? 'glass py-3' : 'bg-transparent py-6'" class="fixed top-[31px] w-full z-[50] transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="index.php" class="text-2xl font-black tracking-tighter uppercase text-anthracite group">
-            CICLI<span class="text-accent italic transition-colors group-hover:text-anthracite">VOLANTE</span>
-        </a>
-        
-        <nav class="hidden lg:flex items-center gap-10">
-            <a href="index.php" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">Tutte le bici</a>
-            <a href="index.php?brand=Specialized" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">E-MTB</a>
-            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">E-City & Urban</a>
-            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-anthracite hover:text-accent transition-colors">Trekking & Gravel</a>
-            <a href="#" class="text-[10px] font-bold uppercase tracking-[0.2em] text-accent hover:text-anthracite transition-colors">Accessori</a>
-        </nav>
+<div class="fixed top-0 w-full z-50">
+    <div class="bg-[#2D5A27] text-white text-[10px] font-bold uppercase tracking-[0.2em] py-2 text-center">
+        Offerta Esclusiva: Spedizione Gratuita su tutti gli ordini sopra i 500€
+    </div>
 
-        <div class="flex items-center gap-4">
-            <div class="hidden xl:flex items-center gap-6 mr-4">
-                <a href="#" class="text-[9px] font-bold uppercase tracking-widest text-anthracite/60 hover:text-anthracite transition-colors">Assistenza</a>
-                <a href="#" class="text-[9px] font-bold uppercase tracking-widest text-anthracite/60 hover:text-anthracite transition-colors">Traccia ordine</a>
-                <a href="#" class="text-[9px] font-bold uppercase tracking-widest text-anthracite/60 hover:text-anthracite transition-colors">Accedi</a>
+    <div class="bg-black text-white py-2 px-6 flex justify-between items-center border-b border-white/10">
+        <div class="flex gap-6 items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-[9px] text-zinc-400 uppercase font-black">Spedizione Gratuita sopra i 500€</span>
             </div>
-            <a href="checkout.php" class="group relative flex items-center justify-center w-12 h-12 rounded-full glass hover:bg-anthracite transition-all duration-500 shadow-sm">
-                <svg class="group-hover:stroke-white transition-colors" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z"/>
-                    <path d="M3 6H21"/><path d="M16 10a4 4 0 01-8 0"/>
-                </svg>
-                <span id="cart-badge" class="<?= $cart_count > 0 ? '' : 'hidden' ?> absolute -top-1 -right-1 bg-accent text-white text-[9px] font-black h-5 w-5 flex items-center justify-center rounded-full border-2 border-white soft-shadow">
-                    <?= $cart_count ?>
-                </span>
+            <div class="hidden md:flex items-center gap-2">
+                <span class="text-[9px] text-zinc-400 uppercase font-black">Assistenza Clienti: +39 02 1234 5678</span>
+            </div>
+        </div>
+        <div>
+            <a href="track_order.php" class="text-[9px] text-white uppercase font-black hover:text-[#2D5A27] transition-colors tracking-widest">
+                Traccia il tuo ordine
             </a>
-            
-            <button class="lg:hidden w-12 h-12 rounded-full glass flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-            </button>
         </div>
     </div>
-</header>
+
+    <header class="bg-white/95 backdrop-blur-md border-b-4 border-[#2D5A27] py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.php" class="text-2xl font-black uppercase tracking-tighter italic">
+                CICLI<span class="text-[#2D5A27]">VOLANTE</span>
+            </a>
+
+            <nav class="hidden md:flex gap-10 text-[10px] font-black uppercase tracking-widest">
+                <a href="index.php?cat=All_Bikes" class="hover:text-[#2D5A27] transition-colors">Tutte le bici</a>
+                <a href="index.php?cat=MTB" class="hover:text-[#2D5A27] transition-colors">E-MTB</a>
+                <a href="index.php?cat=CITY" class="hover:text-[#2D5A27] transition-colors">City</a>
+                <a href="index.php?cat=TREKKING" class="hover:text-[#2D5A27] transition-colors">Trekking</a>
+                <a href="index.php?cat=Accessori" class="hover:text-[#2D5A27] transition-colors">Accessori</a>
+            </nav>
+
+            <a href="checkout.php" class="relative group">
+                <svg class="w-6 h-6 text-gray-900 group-hover:text-[#2D5A27] transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <?php $cart_total = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0; ?>
+                <span id="cart-badge" style="display: <?= ($cart_total > 0) ? 'flex' : 'none' ?>;" 
+                      class="absolute -top-2 -right-2 bg-[#2D5A27] text-white text-[9px] font-bold h-5 w-5 flex items-center justify-center rounded-full shadow-lg border-2 border-white">
+                    <?= $cart_total ?>
+                </span>
+            </a>
+        </div>
+    </header>
+</div>
+<div class="h-40"></div>

@@ -1,220 +1,196 @@
 <?php
+session_start();
 require 'db_config.php';
 
-// 1. Récupération sécurisée des données de la page produit
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$color = isset($_GET['color']) ? htmlspecialchars($_GET['color']) : 'Originale';
-
-try {
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
-    $stmt->execute([$id]);
-    $product = $stmt->fetch();
-
-    if (!$product) {
-        header("Location: index.php");
-        exit;
+function getProductImage($id) {
+    $extensions = ['webp', 'jpg', 'jpeg', 'png', 'JPG', 'PNG', 'WEBP'];
+    foreach ($extensions as $ext) {
+        if (file_exists("public/img/{$id}.{$ext}")) return "public/img/{$id}.{$ext}";
     }
-} catch (PDOException $e) {
-    die("Errore database: " . $e->getMessage());
+    return "public/img/placeholder.png"; 
 }
 
-$image_principale = !empty($product['immagine_main']) ? $product['immagine_main'] : 'default.jpg';
-$prix_unitaire = $product['prezzo'];
+$cart_products = [];
+$total_general = 0;
+
+if (!empty($_SESSION['cart'])) {
+    $ids = array_keys($_SESSION['cart']);
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $stmt = $pdo->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
+    $stmt->execute($ids);
+    $cart_products = $stmt->fetchAll();
+}
 ?>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento | Cicli Volante</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-white antialiased">
 
-<?php include 'includes/header.php'; ?>
+    <?php include 'includes/header.php'; ?>
 
-<main class="max-w-7xl mx-auto px-6 py-20 min-h-screen bg-gray-50/30">
-    <div class="flex flex-col lg:flex-row gap-12 items-start">
-        
-        <div class="lg:w-1/3 w-full sticky top-32">
-            <div class="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100">
-                <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-8 text-center italic">Riepilogo Ordine</h3>
-                
-                <div class="flex flex-col items-center mb-8">
-                    <img src="public/img/<?= htmlspecialchars($image_principale) ?>" 
-                         class="w-56 h-56 object-contain mix-blend-multiply drop-shadow-2xl transition-transform hover:scale-105 duration-500">
-                    <h2 class="text-2xl font-black text-anthracite mt-4 text-center"><?= htmlspecialchars($product['nome_modello']) ?></h2>
-                    <span class="mt-2 px-4 py-1 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase italic">Colore: <?= $color ?></span>
-                </div>
-
-                <div class="space-y-4 border-t border-gray-50 pt-6">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400 font-bold text-xs uppercase">Quantità</span>
-                        <div class="flex items-center gap-4 bg-gray-50 rounded-full px-3 py-1 border border-gray-100">
-                            <button type="button" onclick="updateQty(-1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400 hover:text-anthracite">-</button>
-                            <span id="qty-display" class="font-black text-lg w-4 text-center">1</span>
-                            <button type="button" onclick="updateQty(1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400 hover:text-anthracite">+</button>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-between items-center pt-4">
-                        <span class="text-gray-400 font-bold text-xs uppercase">Totale</span>
-                        <span id="total-display" class="text-3xl font-black text-anthracite">€ <?= number_format($prix_unitaire, 2, ',', '.') ?></span>
-                    </div>
-                </div>
-
-                <a href="product.php?id=<?= $id ?>" class="block w-full mt-10 py-3 text-center text-[10px] font-black text-gray-300 hover:text-red-500 transition-colors uppercase tracking-[0.2em]">
-                    ✕ Annulla ordine e torna indietro
-                </a>
-            </div>
-        </div>
-
-        <div class="lg:w-2/3 w-full space-y-8">
+    <main class="max-w-7xl mx-auto px-6 py-12 text-gray-900">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-                <div class="bg-yellow-400 p-5 flex items-center justify-center gap-3">
-                    <div class="p-2 bg-white/20 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                        </svg>
+            <div>
+                <h1 class="text-5xl font-black uppercase italic tracking-tighter mb-8">Pagamento</h1>
+                
+                <form action="process_order.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" name="nome" placeholder="Nome e Cognome" class="bg-gray-50 p-5 rounded-2xl w-full outline-none border border-transparent focus:border-[#2D5A27] transition-all" required>
+                        <input type="text" name="tel" placeholder="Cellulare" class="bg-gray-50 p-5 rounded-2xl w-full outline-none border border-transparent focus:border-[#2D5A27]" required>
                     </div>
-                    <span class="font-black text-yellow-900 uppercase tracking-widest text-sm italic">Guida al Pagamento Postepay / BBVA</span>
-                </div>
-
-                <div class="p-8 md:p-10 bg-gradient-to-br from-yellow-50/50 to-white">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                        <div class="flex flex-col items-center text-center group">
-                            <div class="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-xl mb-3 border border-yellow-100 group-hover:rotate-12 transition-transform">📱</div>
-                            <h4 class="text-[10px] font-black uppercase text-yellow-800">1. Accedi</h4>
-                            <p class="text-[11px] text-gray-500 leading-tight">Apri la tua App Postepay o la tua banca</p>
-                        </div>
-                        <div class="flex flex-col items-center text-center group">
-                            <div class="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-xl mb-3 border border-yellow-100 group-hover:rotate-12 transition-transform">💳</div>
-                            <h4 class="text-[10px] font-black uppercase text-yellow-800">2. Invia</h4>
-                            <p class="text-[11px] text-gray-500 leading-tight">Effettua il bonifico o ricarica Postepay</p>
-                        </div>
-                        <div class="flex flex-col items-center text-center group">
-                            <div class="w-12 h-12 bg-white rounded-2xl shadow-sm flex items-center justify-center text-xl mb-3 border border-yellow-100 group-hover:rotate-12 transition-transform">📤</div>
-                            <h4 class="text-[10px] font-black uppercase text-yellow-800">3. Conferma</h4>
-                            <p class="text-[11px] text-gray-500 leading-tight">Carica la ricevuta nel modulo qui sotto</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 md:p-8 rounded-3xl border-2 border-yellow-200 shadow-lg relative">
-                        <div class="space-y-6">
-                            <div class="flex flex-col">
-                                <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Intestatario Beneficiario</span>
-                                <span class="text-lg font-bold text-anthracite">Cicli Volante</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1 italic text-accent">IBAN per Bonifico o Ricarica Evolution</span>
-                                <div class="flex items-center justify-between gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                    <span id="iban-text" class="font-mono font-bold text-sm md:text-lg text-blue-800 select-all tracking-tighter">IT52 PO35 7601 6010 1000 8072 943</span>
-                                    <button type="button" onclick="copyIban()" class="bg-yellow-400 hover:bg-yellow-500 text-yellow-900 text-[10px] font-black px-4 py-2 rounded-lg transition-all uppercase active:scale-95">Copia</button>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-50">
-                                <div>
-                                    <span class="text-[9px] font-black text-gray-400 uppercase mb-1 block">Banca</span>
-                                    <span class="text-sm font-bold">BBVA</span>
-                                </div>
-                                <div>
-                                    <span class="text-[9px] font-black text-gray-400 uppercase mb-1 block">BIC / SWIFT</span>
-                                    <span class="text-sm font-bold">BBVAITM2XXX</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form action="process_order.php" method="POST" enctype="multipart/form-data" class="p-8 md:p-12 space-y-8 bg-white border-t border-gray-100">
-                    <input type="hidden" name="product_id" value="<?= $id ?>">
-                    <input type="hidden" name="color" value="<?= $color ?>">
-                    <input type="hidden" name="quantity" id="input-qty" value="1">
-                    <input type="hidden" name="final_price" id="input-total" value="<?= $prix_unitaire ?>">
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="md:col-span-2">
-                            <label class="text-[10px] font-black uppercase text-gray-300 ml-4 mb-1 block">Dati Personali</label>
-                            <input type="text" name="name" required placeholder="Nome e Cognome" class="w-full bg-gray-50 border-2 border-gray-50 rounded-2xl p-4 focus:border-accent focus:bg-white transition-all outline-none">
-                        </div>
-                        <input type="email" name="email" required placeholder="Indirizzo Email" class="w-full bg-gray-50 border-2 border-gray-50 rounded-2xl p-4 focus:border-accent focus:bg-white transition-all outline-none">
-                        <input type="tel" name="phone" required placeholder="Telefono / WhatsApp" class="w-full bg-gray-50 border-2 border-gray-50 rounded-2xl p-4 focus:border-accent focus:bg-white transition-all outline-none">
-                        
-                        <div class="md:col-span-2 mt-4">
-                            <label class="text-[10px] font-black uppercase text-gray-300 ml-4 mb-1 block">Indirizzo di Spedizione in Italia</label>
-                            <input type="text" name="address" required placeholder="Via, Numero Civico, Interno" class="w-full bg-gray-50 border-2 border-gray-50 rounded-2xl p-4 focus:border-accent focus:bg-white transition-all outline-none mb-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <input type="text" name="city" required placeholder="Città" class="w-full bg-gray-50 border-2 border-gray-50 rounded-2xl p-4 focus:border-accent focus:bg-white transition-all outline-none">
-                                <input type="text" name="zip" required placeholder="CAP" class="w-full bg-gray-50 border-2 border-gray-50 rounded-2xl p-4 focus:border-accent focus:bg-white transition-all outline-none">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 pt-8 border-t border-gray-50">
-                        <label class="block text-xs font-black text-center text-accent uppercase mb-6 tracking-[0.2em]">Carica Prova di Pagamento</label>
-                        <div class="relative">
-                            <input type="file" name="receipt" id="receipt" required accept=".jpg,.jpeg,.png,.pdf" class="hidden">
-                            <label for="receipt" id="dropzone" class="flex flex-col items-center justify-center w-full h-40 bg-gray-50 border-2 border-dashed border-gray-200 rounded-[2rem] cursor-pointer hover:bg-gray-100 hover:border-accent transition-all duration-300 group">
-                                <div class="bg-white p-3 rounded-xl shadow-sm mb-3 group-hover:scale-110 transition-transform">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                                </div>
-                                <span id="file-name" class="text-xs font-bold text-gray-400 group-hover:text-anthracite transition-colors italic">Seleziona JPG, PNG o PDF (Max 5MB)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-anthracite hover:bg-black text-white font-black py-7 rounded-[2rem] transition-all shadow-2xl uppercase tracking-[0.3em] text-sm mt-10 active:scale-95 transform">
-                        Conferma ed Invia Ordine
-                    </button>
+                    <input type="email" name="email" placeholder="Email" class="bg-gray-50 p-5 rounded-2xl w-full outline-none border border-transparent focus:border-[#2D5A27]" required>
                     
-                    <p class="text-[9px] text-center text-gray-400 uppercase tracking-widest italic pt-4">La transazione è protetta e verificata manualmente dal nostro team.</p>
+                    <div class="grid grid-cols-3 gap-4">
+                        <input type="text" name="citta" placeholder="Città" class="col-span-2 bg-gray-50 p-5 rounded-2xl w-full outline-none border border-transparent focus:border-[#2D5A27]" required>
+                        <input type="text" name="cap" placeholder="CAP" class="bg-gray-50 p-5 rounded-2xl w-full outline-none border border-transparent focus:border-[#2D5A27]" required>
+                    </div>
+                    <input type="text" name="indirizzo" placeholder="Indirizzo esatto" class="bg-gray-50 p-5 rounded-2xl w-full outline-none border border-transparent focus:border-[#2D5A27]" required>
+
+                    <div class="bg-[#FFD500] p-8 rounded-[2.5rem] shadow-xl text-black border-2 border-yellow-300 relative overflow-hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-[10px] font-black uppercase tracking-widest bg-black text-white px-3 py-1 rounded-full">Postepay Evolution / Bonifico</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase opacity-60">Intestatario</p>
+                                <p class="text-xl font-black uppercase italic tracking-tight">Cicli Volante</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] font-bold uppercase opacity-60">IBAN</p>
+                                <p class="text-lg font-black font-mono select-all tracking-tighter">IT52 PO35 7601 6010 1000 8072 943</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-black/10">
+                                <div>
+                                    <p class="text-[9px] font-bold uppercase opacity-60">BIC / SWIFT</p>
+                                    <p class="font-black text-sm">BBVAITM2XXX</p>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] font-bold uppercase opacity-60">Banca</p>
+                                    <p class="font-black text-sm uppercase">BBVA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 bg-blue-50 rounded-2xl border border-blue-100 flex gap-4">
+                        <span class="w-6 h-6 bg-blue-500 text-white rounded-full flex-shrink-0 flex items-center justify-center font-black italic text-xs">i</span>
+                        <p class="text-[10px] text-blue-900 font-bold uppercase leading-relaxed">
+                            Paga ora e carica qui sotto lo screenshot o il PDF della ricevuta.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <input type="file" name="documento" id="file-upload" accept=".jpg,.jpeg,.png,.pdf" class="hidden" required>
+                        <label for="file-upload" class="flex items-center justify-between bg-gray-50 border-2 border-dashed border-gray-200 p-4 rounded-2xl cursor-pointer hover:border-[#2D5A27] transition-all group">
+                            <span id="file-name" class="text-[10px] font-black text-gray-400 uppercase">Seleziona la ricevuta</span>
+                            <span class="bg-black text-white text-[10px] font-black px-6 py-3 rounded-xl uppercase group-hover:bg-[#2D5A27] transition-colors">Sfoglia</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-black text-white font-black py-7 rounded-[2rem] uppercase tracking-[0.2em] hover:bg-[#2D5A27] transition-all shadow-2xl">
+                        Conferma Ordine
+                    </button>
                 </form>
             </div>
+
+            <div class="lg:sticky lg:top-40 h-fit">
+                <div class="bg-gray-50 rounded-[3rem] p-10 border border-gray-100 shadow-sm">
+                    <h2 class="text-2xl font-black uppercase italic mb-8 tracking-tighter">Riepilogo Ordine</h2>
+                    <div id="cart-container" class="space-y-6">
+                        <?php if (empty($cart_products)): ?>
+                            <p class="text-gray-400 font-black italic uppercase text-xs">Carrello vuoto.</p>
+                        <?php else: ?>
+                            <?php foreach ($cart_products as $p): 
+                                $qty = $_SESSION['cart'][$p['id']];
+                                $total_general += ($p['prezzo'] * $qty);
+                            ?>
+                            <div class="flex items-center gap-5 bg-white p-4 rounded-3xl shadow-sm border border-transparent transition-all" id="item-<?= $p['id'] ?>">
+                                <div class="w-20 h-20 bg-gray-50 rounded-2xl p-2 flex-shrink-0">
+                                    <img src="<?= getProductImage($p['id']) ?>" class="w-full h-full object-contain mix-blend-multiply">
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex justify-between items-start">
+                                        <h3 class="font-black uppercase text-[11px] leading-tight"><?= $p['nome_modello'] ?></h3>
+                                        <button onclick="updateQty(<?= $p['id'] ?>, 'remove')" class="text-gray-300 hover:text-red-600 transition-colors">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        </button>
+                                    </div>
+                                    <div class="flex justify-between items-end mt-2">
+                                        <div class="flex items-center gap-3 bg-gray-100 rounded-lg px-2 py-1">
+                                            <button onclick="updateQty(<?= $p['id'] ?>, -1)" class="text-[10px] font-black hover:text-[#2D5A27]">-</button>
+                                            <span class="text-[10px] font-black qty-val"><?= $qty ?></span>
+                                            <button onclick="updateQty(<?= $p['id'] ?>, 1)" class="text-[10px] font-black hover:text-[#2D5A27]">+</button>
+                                        </div>
+                                        <span class="font-black italic text-[#2D5A27]">€ <?= number_format($p['prezzo'], 0, '', '.') ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="mt-10 pt-8 border-t border-gray-200 space-y-3">
+                        <div class="flex justify-between text-[10px] font-black uppercase text-gray-400">
+                            <span>Subtotale</span>
+                            <span class="text-black italic">€ <span id="subtotal"><?= number_format($total_general, 0, '', '.') ?></span></span>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-black uppercase text-gray-400">
+                            <span>Spedizione</span>
+                            <span class="text-[#2D5A27] italic font-bold">Gratuita</span>
+                        </div>
+                        <div class="pt-6 mt-4 border-t-2 border-dashed border-gray-200 flex justify-between items-center">
+                            <span class="text-3xl font-black uppercase italic tracking-tighter">Totale</span>
+                            <span class="text-3xl font-black text-[#2D5A27]">€ <span id="total-final"><?= number_format($total_general, 0, '', '.') ?></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<script>
-    let qty = 1;
-    const unitPrice = <?= $prix_unitaire ?>;
+    <?php include 'includes/footer.php'; ?>
 
-    function updateQty(val) {
-        qty += val;
-        if (qty < 1) qty = 1;
+    <script>
+    async function updateQty(id, action) {
+        const formData = new FormData();
+        formData.append('id', id);
         
-        const total = (qty * unitPrice).toFixed(2);
-        
-        document.getElementById('qty-display').textContent = qty;
-        document.getElementById('total-display').textContent = '€ ' + total.replace('.', ',');
-        
-        document.getElementById('input-qty').value = qty;
-        document.getElementById('input-total').value = total;
-    }
-
-    function copyIban() {
-        const iban = "IT52 PO35 7601 6010 1000 8072 943";
-        navigator.clipboard.writeText(iban).then(() => {
-            const btn = event.target;
-            const originalText = btn.innerText;
-            btn.innerText = "COPIATO!";
-            btn.classList.replace('bg-yellow-400', 'bg-green-400');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.replace('bg-green-400', 'bg-yellow-400');
-            }, 2000);
-        });
-    }
-
-    document.getElementById('receipt').onchange = function() {
-        if(this.files[0]) {
-            const file = this.files[0];
-            const nameDisplay = document.getElementById('file-name');
-            const dropzone = document.getElementById('dropzone');
-            
-            if (file.size > 5 * 1024 * 1024) {
-                alert("File troppo grande! Massimo 5MB.");
-                this.value = "";
-                return;
-            }
-
-            nameDisplay.textContent = "File pronto: " + file.name;
-            nameDisplay.classList.replace('text-gray-400', 'text-accent');
-            dropzone.classList.replace('border-gray-200', 'border-accent');
-            dropzone.classList.add('bg-accent/5');
+        if(action === 'remove') {
+            formData.append('remove', true);
+        } else {
+            formData.append('delta', action);
         }
-    };
-</script>
 
-<?php include 'includes/footer.php'; ?>
+        const response = await fetch('update_cart.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        if(data.success) {
+            // Recharger la page pour recalculer les prix proprement ou modifier le DOM ici
+            // Pour un rendu parfait sans bug de calcul, on recharge :
+            window.location.reload();
+        }
+    }
+
+    document.getElementById('file-upload').addEventListener('change', function(e){
+        if(e.target.files.length > 0) {
+            const fileName = e.target.files[0].name;
+            const display = document.getElementById('file-name');
+            display.innerText = fileName;
+            display.classList.remove('text-gray-400');
+            display.classList.add('text-black');
+        }
+    });
+    </script>
+</body>
+</html>

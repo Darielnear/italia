@@ -1,124 +1,155 @@
 <?php
+session_start();
+require 'db_config.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// On chargera PHPMailer ici (via require 'vendor/autoload.php' ou manuellement)
-// Pour l'instant, on prépare la logique.
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
-require 'db_config.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_SESSION['cart'])) {
     
-    // 1. RÉCUPÉRATION DES DONNÉES
-    $name = htmlspecialchars($_POST['name']);
+    // --- 1. GÉNÉRATION DU NUMÉRO DE COMMANDE UNIQUE ---
+    $order_id_display = "VOL-" . date("Y") . "-" . strtoupper(bin2hex(random_bytes(3)));
+
+    $nome = htmlspecialchars($_POST['nome']);
     $email = htmlspecialchars($_POST['email']);
-    $phone = htmlspecialchars($_POST['phone']);
-    $city = htmlspecialchars($_POST['city']);
-    $zip = htmlspecialchars($_POST['zip']);
-    $address = htmlspecialchars($_POST['address']);
-    $color = htmlspecialchars($_POST['color']);
-    $product_id = (int)$_POST['product_id'];
+    $telefono = htmlspecialchars($_POST['tel']); 
+    $citta = htmlspecialchars($_POST['citta']);
+    $cap = htmlspecialchars($_POST['cap']);
+    $indirizzo = htmlspecialchars($_POST['indirizzo']);
     
-    // Génération d'un numéro de commande unique
-    $order_ref = "ITA-" . strtoupper(substr(md5(uniqid()), 0, 8));
-
-    // 2. GESTION DU FICHIER (REÇU)
-    $upload_dir = "uploads/";
-    $file = $_FILES['receipt'];
-    $file_ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-    $allowed = ['jpg', 'jpeg', 'png', 'pdf'];
-    
-    if (!in_array($file_ext, $allowed)) {
-        die("Errore: Estensione file non permessa.");
+    // --- 2. GESTION DU FICHIER ---
+    $documento_url = "Nessun file";
+    $documento_path = ""; 
+    if (isset($_FILES['documento']) && $_FILES['documento']['error'] === 0) {
+        $upload_dir = 'uploads/payments/';
+        if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
+        
+        $extension = pathinfo($_FILES['documento']['name'], PATHINFO_EXTENSION);
+        $filename = "ricevuta_" . $order_id_display . "." . $extension; // Nom propre avec le N° de commande
+        
+        if (move_uploaded_file($_FILES['documento']['tmp_name'], $upload_dir . $filename)) {
+            $documento_url = $upload_dir . $filename;
+            $documento_path = realpath($documento_url);
+        }
     }
 
-    if ($file['size'] > 5 * 1024 * 1024) { // 5MB
-        die("Errore: Il file è troppo grande.");
+    // --- 3. CALCUL DU TOTAL ET RÉCAPITULATIF ---
+    $total_ordine = 0;
+    $cart_details_html = "";
+    
+    $ids = array_keys($_SESSION['cart']);
+    $placeholders = implode(',', array_fill(0, count($ids), '?'));
+    $stmt = $pdo->prepare("SELECT id, nome_modello, prezzo FROM products WHERE id IN ($placeholders)");
+    $stmt->execute($ids);
+    $products = $stmt->fetchAll();
+    
+    $cart_details_html = '<table style="width:100%; border-collapse:collapse; font-family:sans-serif;">';
+    foreach($products as $row) {
+        $qty = $_SESSION['cart'][$row['id']];
+        $subtotal = $row['prezzo'] * $qty;
+        $total_ordine += $subtotal;
+        
+        $cart_details_html .= "
+            <tr>
+                <td style='padding:10px; border-bottom:1px solid #eee;'><b>{$row['nome_modello']}</b> (x{$qty})</td>
+                <td style='padding:10px; border-bottom:1px solid #eee; text-align:right;'>€ " . number_format($subtotal, 0, '', '.') . "</td>
+            </tr>";
+    }
+    $cart_details_html .= "</table>";
+
+    // --- 4. SAUVEGARDE EN BASE DE DONNÉES (IMPORTANT POUR LE SUIVI) ---
+    try {
+        $stmt_save = $pdo->prepare("INSERT INTO orders (order_number, nome, email, tel, citta, cap, indirizzo, totale, ricevuta_path, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'In Elaborazione', NOW())");
+        $stmt_save->execute([$order_id_display, $nome, $email, $telefono, $citta, $cap, $indirizzo, $total_ordine, $documento_url]);
+    } catch (Exception $e) {
+        // Optionnel : logger l'erreur
     }
 
-    $new_file_name = $order_ref . "." . $file_ext;
-    $dest_path = $upload_dir . $new_file_name;
+    // --- 5. ENVOI DES EMAILS ---
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.ton-hebergeur.com'; 
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'ton-email@domaine.com';    
+        $mail->Password   = 'ton-mot-de-passe';         
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+        $mail->CharSet    = 'UTF-8';
 
-    if (move_uploaded_file($file['tmp_name'], $dest_path)) {
+        $mail->setFrom('ton-email@domaine.com', 'Cicli Volante');
+        $mail->addAddress($email, $nome);
+        $mail->addAddress('ton-premier-mail@gmail.com');
+
+        if ($documento_path) {
+            $mail->addAttachment($documento_path, 'Ricevuta_Pagamento.'.$extension);
+        }
+
+        $mail->isHTML(true);
+        $mail->Subject = "Conferma Ordine #$order_id_display - Cicli Volante"; // Sujet avec le vrai numéro
         
-        // 3. RÉCUPÉRATION INFOS PRODUIT POUR LE MAIL
-        $stmt = $pdo->prepare("SELECT * FROM products WHERE id = ?");
-        $stmt->execute([$product_id]);
-        $product = $stmt->fetch();
-
-        // 4. PRÉPARATION DU MAIL (DESIGN)
-        $subject = "Conferma Ordine #$order_ref - Cicli Volante";
-        
-        // Corps du mail en HTML avec ton design
-        $mail_body = "
-        <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee;'>
-            <div style='background: #1a1a1a; padding: 40px; text-align: center;'>
-                <h1 style='color: #ffffff; margin: 0; letter-spacing: 4px;'>CICLI VOLANTE</h1>
+        $mail->Body = "
+        <div style='max-width:600px; margin:auto; border:1px solid #eee; padding:40px; font-family:sans-serif;'>
+            <center><h1 style='font-style:italic; font-weight:900;'>CICLI <span style='color:#2D5A27;'>VOLANTE</span></h1></center>
+            <h2 style='text-transform:uppercase; border-bottom:4px solid #2D5A27; padding-bottom:10px;'>Ordine Confermato</h2>
+            <p>Grazie <b>$nome</b>, il tuo ordine <b>#$order_id_display</b> è stato registrato.</p>
+            
+            <div style='background:#f9f9f9; padding:20px; border-radius:10px; margin:20px 0;'>
+                <p style='font-size:10px; font-weight:bold; text-transform:uppercase; color:#2D5A27; margin:0;'>Spedito a:</p>
+                <p style='margin:5px 0;'>$nome<br>$indirizzo<br>$cap $citta</p>
             </div>
-            <div style='padding: 30px;'>
-                <h2 style='color: #333;'>Grazie per il tuo ordine, $name!</h2>
-                <p style='color: #666;'>Abbiamo ricevuto la tua prova di pagamento. La tua bicicletta è ora in fase di preparazione.</p>
-                
-                <div style='background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;'>
-                    <h3 style='margin-top: 0;'>Dettagli Ordine:</h3>
-                    <p><strong>Rif. Ordine:</strong> $order_ref</p>
-                    <p><strong>Modello:</strong> {$product['nome_modello']}</p>
-                    <p><strong>Colore:</strong> $color</p>
-                    <p><strong>Prezzo:</strong> € " . number_format($product['prezzo'], 2, ',', '.') . "</p>
-                </div>
 
-                <div style='margin: 20px 0;'>
-                    <h3 style='margin-top: 0;'>Indirizzo di Spedizione:</h3>
-                    <p>$address<br>$zip, $city<br>Italia</p>
-                    <p><strong>Telefono:</strong> $phone</p>
-                </div>
+            <h3>Dettagli:</h3>
+            $cart_details_html
+            <h2 style='text-align:right; font-style:italic;'>TOTALE: € " . number_format($total_ordine, 0, '', '.') . "</h2>
+            <hr style='border:none; border-top:1px solid #eee; margin:30px 0;'>
+            <p style='font-size:11px; color:#999; text-align:center;'>Puoi tracciare il tuo ordine sul sito con il codice: <b>$order_id_display</b></p>
+        </div>";
 
-                <p style='font-size: 12px; color: #999; border-top: 1px solid #eee; pt-20;'>
-                    Riceverai il codice di tracciamento (tracking) non appena il corriere prenderà in carico il pacco.
-                </p>
-            </div>
-            <div style='background: #f1f1f1; padding: 20px; text-align: center; font-size: 12px; color: #777;'>
-                Cicli Volante S.R.L - Italia
+        $mail->send();
+    } catch (Exception $e) {}
+
+    // Vider le panier
+    $_SESSION['cart'] = [];
+?>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Conferma Ordine | Cicli Volante</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-white flex items-center justify-center min-h-screen text-center px-6">
+    <div class="max-w-md w-full">
+        <div class="mb-8 flex justify-center">
+            <div class="bg-[#2D5A27] p-5 rounded-full shadow-2xl">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
         </div>
-        ";
-
-        // 5. ENVOI VIA PHPMAILER (À CONFIGURER PLUS TARD)
-        /*
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host       = 'smtp.tonhebergement.com';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'votre-mail-pro@ciclivolante.it';
-            $mail->Password   = 'votre-mot-de-passe';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
-
-            $mail->setFrom('votre-mail-pro@ciclivolante.it', 'Cicli Volante');
-            $mail->addAddress($email, $name); // Au client
-            $mail->addAddress('admin1@votre-gestion.it'); // Copie 1
-            $mail->addAddress('admin2@votre-gestion.it'); // Copie 2
-            $mail->addReplyTo('votre-mail-pro@ciclivolante.it', 'Informazioni');
-
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = $mail_body;
-            $mail->addAttachment($dest_path); // On joint la preuve de paiement
-
-            $mail->send();
-            header("Location: thank-you.php?ref=$order_ref");
-        } catch (Exception $e) {
-            echo "Errore nell'invio della mail: {$mail->ErrorInfo}";
-        }
-        */
         
-        // Pour tester SANS SMTP pour l'instant :
-        header("Location: thank-you.php?ref=$order_ref");
-        exit;
+        <h1 class="text-4xl font-black uppercase italic tracking-tighter mb-2">Grazie!</h1>
+        <p class="text-gray-400 font-bold uppercase text-[10px] tracking-widest mb-8">Ordine #<?= $order_id_display ?> ricevuto</p>
+        
+        <div class="bg-gray-50 p-8 rounded-[2rem] border border-gray-100 text-left mb-8">
+            <p class="text-[10px] font-black uppercase text-[#2D5A27] mb-4 italic">Cosa succede ora?</p>
+            <p class="text-xs text-gray-600 leading-relaxed">
+                Abbiamo inviato una conferma a <b><?= $email ?></b>. Verificheremo la ricevuta entro 24h e ti invieremo il codice tracking non appena la tua Cicli Volante lascerà l'atelier.
+            </p>
+        </div>
 
-    } else {
-        echo "Errore durante l'upload del file.";
-    }
-}
+        <a href="index.php" class="block w-full bg-black text-white font-black px-10 py-5 rounded-2xl uppercase text-[10px] tracking-widest hover:bg-[#2D5A27] transition-all">
+            Torna alla Home
+        </a>
+    </div>
+</body>
+</html>
+<?php 
+} else { header('Location: index.php'); } 
 ?>
