@@ -37,6 +37,7 @@ $variant_files = glob("public/img/{$id}_*.*");
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $p['nome_modello'] ?> | Cicli Volante</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -44,21 +45,25 @@ $variant_files = glob("public/img/{$id}_*.*");
         .toast-success { animation: slideIn 0.4s ease-out; }
         @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.4); } 100% { transform: scale(1); } }
         .animate-pop { animation: pop 0.3s ease-out; }
+        
+        /* AJOUTÉ : Confort de lecture sur mobile */
+        html, body { overflow-x: hidden; }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white antialiased">
 
     <?php include 'includes/header.php'; ?>
 
-    <main class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-20">
-        <div>
-            <div class="bg-gray-50 rounded-[3rem] p-12 aspect-square flex items-center justify-center border border-gray-100 shadow-inner">
+    <main class="max-w-7xl mx-auto px-6 py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
+        
+        <div class="w-full">
+            <div class="bg-gray-50 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 aspect-square flex items-center justify-center border border-gray-100 shadow-inner">
                 <img id="main-view" src="<?= getProductImage($id) ?>" class="w-full h-full object-contain mix-blend-multiply transition-all duration-500">
             </div>
             <?php if(!empty($variant_files)): ?>
-            <div class="flex gap-4 mt-8 justify-center">
+            <div class="flex gap-4 mt-8 justify-center flex-wrap">
                 <?php foreach(array_merge([getProductImage($id)], $variant_files) as $img): ?>
-                <button onclick="document.getElementById('main-view').src='<?= $img ?>'" class="w-14 h-14 rounded-full border-2 border-gray-200 overflow-hidden bg-white p-1 hover:border-[#2D5A27] transition-all">
+                <button onclick="document.getElementById('main-view').src='<?= $img ?>'" class="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-gray-200 overflow-hidden bg-white p-1 hover:border-[#2D5A27] transition-all">
                     <img src="<?= $img ?>" class="w-full h-full object-cover rounded-full">
                 </button>
                 <?php endforeach; ?>
@@ -66,31 +71,33 @@ $variant_files = glob("public/img/{$id}_*.*");
             <?php endif; ?>
         </div>
 
-        <div>
-            <p class="text-[#2D5A27] font-black uppercase text-xs tracking-widest mb-2"><?= $p['brand'] ?></p>
-            <h1 class="text-6xl font-black uppercase mb-6 italic leading-none tracking-tighter"><?= $p['nome_modello'] ?></h1>
-            <p class="text-4xl font-black italic mb-12 text-gray-900">€ <?= number_format($p['prezzo'], 0, '', '.') ?></p>
+        <div class="flex flex-col">
+            <p class="text-[#2D5A27] font-black uppercase text-[10px] md:text-xs tracking-widest mb-2"><?= $p['brand'] ?></p>
             
-            <div class="grid grid-cols-2 gap-8 border-t border-gray-100 pt-10 mb-10">
+            <h1 class="text-4xl md:text-6xl font-black uppercase mb-4 md:mb-6 italic leading-none tracking-tighter"><?= $p['nome_modello'] ?></h1>
+            
+            <p class="text-3xl md:text-4xl font-black italic mb-8 md:mb-12 text-gray-900">€ <?= number_format($p['prezzo'], 0, '', '.') ?></p>
+            
+            <div class="grid grid-cols-2 gap-4 md:gap-8 border-t border-gray-100 pt-8 md:pt-10 mb-10">
                 <?php foreach($specs as $key => $val): ?>
                     <div>
-                        <p class="text-[10px] font-black uppercase text-gray-400 mb-1"><?= str_replace('_', ' ', $key) ?></p>
-                        <p class="text-sm font-bold uppercase"><?= $val ?></p>
+                        <p class="text-[9px] md:text-[10px] font-black uppercase text-gray-400 mb-1"><?= str_replace('_', ' ', $key) ?></p>
+                        <p class="text-xs md:text-sm font-bold uppercase"><?= $val ?></p>
                     </div>
                 <?php endforeach; ?>
             </div>
 
-            <div class="mb-12 border-l-4 border-[#2D5A27] pl-6 py-2">
+            <div class="mb-10 md:mb-12 border-l-4 border-[#2D5A27] pl-4 md:pl-6 py-2">
                 <?= getEliteMarketingText($p['categoria'], $p['descrizione'] ?? '') ?>
             </div>
 
-            <button onclick="addToCart(<?= $p['id'] ?>)" class="w-full bg-black text-white font-black py-7 rounded-2xl mt-4 uppercase text-xs tracking-widest hover:bg-[#2D5A27] transition-all shadow-xl active:scale-95">
+            <button onclick="addToCart(<?= $p['id'] ?>)" class="w-full bg-black text-white font-black py-5 md:py-7 rounded-2xl mt-4 uppercase text-xs tracking-widest hover:bg-[#2D5A27] transition-all shadow-xl active:scale-95">
                 Aggiungi al Carrello
             </button>
         </div>
     </main>
 
-    <div id="toast-container" class="fixed top-32 right-6 z-[100] flex flex-col gap-4"></div>
+    <div id="toast-container" class="fixed bottom-6 right-6 md:top-32 md:bottom-auto z-[100] flex flex-col gap-4 w-[calc(100%-3rem)] md:w-auto"></div>
 
     <?php include 'includes/footer.php'; ?>
 
@@ -120,9 +127,9 @@ $variant_files = glob("public/img/{$id}_*.*");
     function showToast(message) {
         const container = document.getElementById('toast-container');
         const t = document.createElement('div');
-        t.className = "toast-success bg-white border-l-4 border-[#2D5A27] shadow-2xl p-5 flex items-center gap-4 min-w-[300px] rounded-r-lg transition-all duration-500";
+        t.className = "toast-success bg-white border-l-4 border-[#2D5A27] shadow-2xl p-5 flex items-center gap-4 min-w-[280px] rounded-r-lg transition-all duration-500";
         t.innerHTML = `
-            <div class="bg-[#2D5A27] text-white rounded-full p-1">
+            <div class="bg-[#2D5A27] text-white rounded-full p-1 flex-shrink-0">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
             </div>
             <div>
