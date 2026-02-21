@@ -16,7 +16,7 @@ function getEliteMarketingText($categoria, $current_desc) {
     if (strpos($cat, 'MTB') !== false) {
         $text = "<p class='mb-4'><b>Prestazioni senza limiti:</b> Nata nelle officine d'eccellenza, questa E-MTB è il risultato di anni di ricerca...</p>";
     } elseif (strpos($cat, 'CITY') !== false) {
-        $text = "<p class='mb-4'><b>L'Arte del Movimento Urbano:</b> Spostarsi in città non è più una necessità, ma una dichiarazione di stile...</p>";
+        $text = "<p class='mb-4'><b>L'Arte del Movimento Urbano:</b> Spostarsi in città non è più una nécessité, ma una dichiarazione di stile...</p>";
     } else {
         $text = "<p class='mb-4'><b>L'Eccellenza in ogni Dettaglio:</b> Standard qualitativo Cicli Volante...</p>";
     }
@@ -30,7 +30,7 @@ $stmt->execute([$id]);
 $p = $stmt->fetch();
 if (!$p) die("Prodotto non trovato.");
 
-$specs = json_decode($p['caratteristiche_tecniche'] ?? '{}', true) ?: [];
+$specs = json_decode($p['specifiche_tecniche'] ?? '{}', true) ?: [];
 $variant_files = glob("public/img/{$id}_*.*");
 ?>
 <!DOCTYPE html>
@@ -45,9 +45,7 @@ $variant_files = glob("public/img/{$id}_*.*");
         .toast-success { animation: slideIn 0.4s ease-out; }
         @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.4); } 100% { transform: scale(1); } }
         .animate-pop { animation: pop 0.3s ease-out; }
-        
-        /* AJOUTÉ : Confort de lecture sur mobile */
-        html, body { overflow-x: hidden; }
+        html, body { overflow-x: hidden; font-family: 'Inter', sans-serif; }
     </style>
 </head>
 <body class="bg-white antialiased">
@@ -72,24 +70,40 @@ $variant_files = glob("public/img/{$id}_*.*");
         </div>
 
         <div class="flex flex-col">
-            <p class="text-[#2D5A27] font-black uppercase text-[10px] md:text-xs tracking-widest mb-2"><?= $p['brand'] ?></p>
+            <p class="text-[#2D5A27] font-black uppercase text-[10px] md:text-xs tracking-[0.2em] mb-2"><?= $p['brand'] ?></p>
             
-            <h1 class="text-4xl md:text-6xl font-black uppercase mb-4 md:mb-6 italic leading-none tracking-tighter"><?= $p['nome_modello'] ?></h1>
+            <h1 class="text-4xl md:text-6xl font-black uppercase mb-4 md:mb-6 italic leading-none tracking-tighter text-gray-900"><?= $p['nome_modello'] ?></h1>
             
             <p class="text-3xl md:text-4xl font-black italic mb-8 md:mb-12 text-gray-900">€ <?= number_format($p['prezzo'], 0, '', '.') ?></p>
             
-            <div class="grid grid-cols-2 gap-4 md:gap-8 border-t border-gray-100 pt-8 md:pt-10 mb-10">
-                <?php foreach($specs as $key => $val): ?>
-                    <div>
-                        <p class="text-[9px] md:text-[10px] font-black uppercase text-gray-400 mb-1"><?= str_replace('_', ' ', $key) ?></p>
-                        <p class="text-xs md:text-sm font-bold uppercase"><?= $val ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <div class="mb-10 md:mb-12 border-l-4 border-[#2D5A27] pl-4 md:pl-6 py-2">
+            <div class="mb-12 border-l-4 border-[#2D5A27] pl-4 md:pl-6 py-2">
                 <?= getEliteMarketingText($p['categoria'], $p['descrizione'] ?? '') ?>
             </div>
+
+            <?php if (!empty($specs)): ?>
+            <div class="mt-4 mb-12">
+                <div class="flex items-center gap-4 mb-8">
+                    <h3 class="text-[11px] font-black uppercase tracking-[0.3em] text-gray-400 italic whitespace-nowrap">Specifiche Tecniche</h3>
+                    <div class="h-px bg-gray-100 w-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-y-1">
+                    <?php foreach ($specs as $label => $valeur): ?>
+                        <div class="group flex justify-between items-center py-3 border-b border-gray-50 hover:bg-gray-50 transition-all px-3 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-1 h-1 bg-[#2D5A27] rounded-full opacity-0 group-hover:opacity-100 transition-all"></div>
+                                <span class="text-[10px] font-bold uppercase text-gray-400 group-hover:text-black transition-colors tracking-widest italic">
+                                    <?= htmlspecialchars($label) ?>
+                                </span>
+                            </div>
+                            <span class="text-sm font-black uppercase text-gray-900 italic tracking-tight">
+                                <?= htmlspecialchars($valeur) ?>
+                            </span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <button onclick="addToCart(<?= $p['id'] ?>)" class="w-full bg-black text-white font-black py-5 md:py-7 rounded-2xl mt-4 uppercase text-xs tracking-widest hover:bg-[#2D5A27] transition-all shadow-xl active:scale-95">
                 Aggiungi al Carrello
@@ -144,6 +158,5 @@ $variant_files = glob("public/img/{$id}_*.*");
         }, 3000);
     }
     </script>
-    <?php include 'includes/chat.php'; ?>
 </body>
 </html>
